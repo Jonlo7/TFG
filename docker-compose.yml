@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backuper:
+    build: .
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./vol/config:/app/config
+    environment:
+      - PORT=${PORT}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - API_SESSION_SECRET=${API_SESSION_SECRET}
+      - NODE_ENV=${NODE_ENV}
+      - RUN_JOBS=${RUN_JOBS}
+      - ENCRYPT_SALT_ROUNDS=${ENCRYPT_SALT_ROUNDS}
+      - DB_ENCRYPT_ATTR_IV=${DB_ENCRYPT_ATTR_IV}
+      - DB_ENCRYPT_ATTR_KEY=${DB_ENCRYPT_ATTR_KEY}
+      - MYSQL_HOST=mariadb
+      - MYSQL_USER=backuper
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-notexposablesoweackpassword}
+      - MYSQL_DATABASE=backuper
+      - MYSQL_PORT=3306
+    healthcheck:
+      test: "wget --no-verbose --tries=1 --spider http://localhost:${PORT}/health || exit 1"
+      interval: 20s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      - MARIADB_RANDOM_ROOT_PASSWORD="yes"
+      - MYSQL_DATABASE=backuper
+      - MYSQL_USER=backuper
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-notexposablesoweackpassword}
+
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      interval: 20s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - ./vol/data:/var/lib/mysql
+
