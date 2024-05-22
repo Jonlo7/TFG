@@ -22,8 +22,6 @@ export class HistorialAlarmas extends Model<
     @PrimaryKey
     @NotNull
     declare id_Historico: CreationOptional<string>;
-    
-
 
     @Attribute(DataTypes.DATE)
     @NotNull

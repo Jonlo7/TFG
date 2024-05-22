@@ -22,8 +22,6 @@ export class Trabajador extends Model<
   @NotNull
   declare id_Trabajador: CreationOptional<string>;
 
-
-
   @Attribute(DataTypes.STRING)
   @NotNull
   declare nombre: string;
