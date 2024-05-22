@@ -5,3 +5,4 @@ export { Alarmas } from './alarmas.schema';
 export { HistorialAlarmas } from './historialAlarmas.schema';
 export { Lote } from './lote.schema'; 
 export { TurnoTrabajado } from './turnoTrabajado.schema';
+export { Botones } from './botones.schema';
