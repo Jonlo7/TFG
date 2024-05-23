@@ -4,7 +4,8 @@ const router = Router();
 
 router.get(
     "/",
-    async (_req: Request, res: Response, next: NextFunction) => {
+    async (req: Request, res: Response, next: NextFunction) => {
+        //renderizar la vista solo para trabajadores con cargo administrador 
         res.render("planta", { layout: "index", });
     },
 );

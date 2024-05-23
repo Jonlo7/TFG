@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { Trabajador } from '../../schemas';
+import { Trabajador, TurnoTrabajado } from '../../schemas';
 import { checkPassword, hashPassword } from '../../lib/crypto';
 import { requireAuth } from '../middlewares/auth';
 import { APIError } from '../error/APIError';
@@ -32,6 +32,8 @@ router.post(
             if (!passwordMatch) throw new APIError("Invalid email or password", true);
 
             req.session.trabajador = trabajador;
+
+            await TurnoTrabajado.create({id_Turno: req.sessionID, fechaLogin: new Date(), id_Trabajador: trabajador.id_Trabajador});
             res.redirect("/");
         } catch (error) {
             next(error);
@@ -79,6 +81,7 @@ router.get(
     "/logout",
     requireAuth,
     async (req: Request, res: Response, _next: NextFunction) => {
+        await TurnoTrabajado.update({fechaLogout: new Date()}, {where: {id_Turno: req.sessionID}});
         req.session.destroy(() => {
             res.redirect("/login");
         });

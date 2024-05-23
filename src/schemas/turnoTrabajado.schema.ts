@@ -17,8 +17,7 @@ export class TurnoTrabajado extends Model<
   InferAttributes<TurnoTrabajado>,
   InferCreationAttributes<TurnoTrabajado>
 > {
-    @Attribute(DataTypes.UUID)
-    @Default(sql.uuidV4)
+    @Attribute(DataTypes.STRING)
     @PrimaryKey
     @NotNull
     declare id_Turno: CreationOptional<string>;
@@ -28,8 +27,7 @@ export class TurnoTrabajado extends Model<
     declare fechaLogin: Date;
     
     @Attribute(DataTypes.DATE)
-    @NotNull
-    declare fechaLogout: Date;
+    declare fechaLogout?: Date;
 
     @Attribute(DataTypes.UUID)
     declare id_Trabajador: ForeignKey<Trabajador['id_Trabajador']>;
