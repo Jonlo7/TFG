@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maquinas</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-   <style>
+  <link rel="stylesheet" href="/styles/tailwind.css">
+  <style>
     .estado-maquina {
       display: flex;
       justify-content: space-between;
@@ -26,8 +26,7 @@
       position: relative;
       overflow: hidden;
       width: 100%;
-      height: auto;
-      max-height: 400px;
+      height: 350px; 
     }
     .grid-container {
       display: grid;
@@ -43,7 +42,6 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
-
   </style>
 </head>
 <body class="bg-gray-100">
@@ -59,7 +57,7 @@
       </div>
       <div class="flex flex-col items-center space-y-4">
         <div class="imagen-contenedor rounded-md bg-gray-200">
-          <img src="/styles/images/encapsuladora.png" alt="ENCAPSULADORA" class="maquina-imagen">          
+          <img src="/styles/images/encapsuladora.png" alt="ENCAPSULADORA" class="maquina-imagen">
         </div>
         <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black">
           ENCAPSULADORA
@@ -83,43 +81,44 @@
       </div>
     </div>
   
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-      <div class="imagen-contenedor rounded-md bg-gray-200">
-        <div class="w-full h-64 bg-gray-200 rounded-md">
+    <div class="grid-container w-full">
+      <div class="flex flex-col items-center space-y-4">
+        <div class="imagen-contenedor rounded-md bg-gray-200">
           <img src="/styles/images/llenadora.png" alt="LLENADORA" class="maquina-imagen">
         </div>
         <button 
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black"
-          onclick="window.location.href = '/maquina-llenadora';">
+          onclick="window.location.href = '/maquina-llenadora';"
+        >
           LLENADORA
         </button>
       </div>
-      <div class="w-full sm:w-80 mx-auto">
+      <div class="w-full sm:w-80 mx-auto flex flex-col items-center">
         <div class="text-lg font-semibold mb-4 text-center">Maquinas Activas</div>
-        <div class="space-y-2">
-          <div class="flex items-center justify-between">
-            <div class="font-medium">LLENADORA</div>
-            <div id="llenadora-status" class="w-4 h-4 bg-green-500 rounded-full"></div>
+        <div class="space-y-2 w-full">
+          <div class="estado-maquina">
+            <div>LLENADORA</div>
+            <div id="llenadora-status" class="w-4 h-4 rounded-full"></div>
           </div>
-          <div class="flex items-center justify-between">
-            <div class="font-medium">ENCORCHADORA</div>
-            <div id="encorchadora-status" class="w-4 h-4 bg-red-500 rounded-full"></div>
+          <div class="estado-maquina">
+            <div>ENCORCHADORA</div>
+            <div id="encorchadora-status" class="w-4 h-4 rounded-full"></div>
           </div>
-          <div class="flex items-center justify-between">
-            <div class="font-medium">ENCAPSULADORA</div>
-            <div id="encapsuladora-status" class="w-4 h-4 bg-green-500 rounded-full"></div>
+          <div class="estado-maquina">
+            <div>ENCAPSULADORA</div>
+            <div id="encapsuladora-status" class="w-4 h-4 rounded-full"></div>
           </div>
-          <div class="flex items-center justify-between">
-            <div class="font-medium">TERMOSELLADORA</div>
-            <div id="termoselladora-status" class="w-4 h-4 bg-yellow-500 rounded-full"></div>
+          <div class="estado-maquina">
+            <div>TERMOSELLADORA</div>
+            <div id="termoselladora-status" class="w-4 h-4 rounded-full"></div>
           </div>
-          <div class="flex items-center justify-between">
-            <div class="font-medium">ETIQUETADORA</div>
-            <div id="etiquetadora-status" class="w-4 h-4 bg-red-500 rounded-full"></div>
+          <div class="estado-maquina">
+            <div>ETIQUETADORA</div>
+            <div id="etiquetadora-status" class="w-4 h-4 rounded-full"></div>
           </div>
-          <div class="flex items-center justify-between">
-            <div class="font-medium">EMPAQUETADORA</div>
-            <div id="empaquetadora-status" class="w-4 h-4 bg-green-500 rounded-full"></div>
+          <div class="estado-maquina">
+            <div>EMPAQUETADORA</div>
+            <div id="empaquetadora-status" class="w-4 h-4 rounded-full"></div>
           </div>
         </div>
       </div>
@@ -128,15 +127,17 @@
           <img src="/styles/images/empaquetadora.png" alt="EMPAQUETADORA" class="maquina-imagen">
         </div>
         <button 
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black">
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black"
+        >
           EMPAQUETADORA 
         </button>
       </div>
     </div>
   </div>
- 
-<script>
-   /*
+
+  <script>
+    /*
+    // Estados de las máquinas
     const estadosMaquinas = {
       llenadora: true,  // 1 significa activo
       encorchadora: false, // 0 significa inactivo
@@ -146,7 +147,7 @@
       empaquetadora: true
     };
 
-    // Función para actualizar el color del estado según el valor booleano
+    // Función para actualizar el color de los estados de las máquinas
     function actualizarEstado(elementoId, estado) {
       const colorClase = estado ? 'bg-green-500' : 'bg-red-500';
       document.getElementById(elementoId).className = 'w-4 h-4 rounded-full ' + colorClase;
@@ -159,8 +160,7 @@
     actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
     actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
     actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
-  */
+    */
   </script>
-
 </body>
 </html>
