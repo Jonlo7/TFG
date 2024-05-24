@@ -35,13 +35,12 @@
       </div>
     </div>
   
-    <div class="flex flex-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 justify-center gap-6 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       <div class="flex flex-col items-center space-y-4">
         <div class="w-full h-64 bg-gray-200 rounded-md"></div>
         <button 
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black"
-          onclick="window.location.href = '/maquina-llenadora';"
-        >
+          onclick="window.location.href = '/maquina-llenadora';">
           LLENADORA
         </button>
       </div>
@@ -50,35 +49,34 @@
         <div class="space-y-2">
           <div class="flex items-center justify-between">
             <div class="font-medium">LLENADORA</div>
-            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+            <div class="w-4 h-4 bg-green-500 rounded-full" id="llenadora-status"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">ENCORCHADORA</div>
-            <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+            <div class="w-4 h-4 bg-red-500 rounded-full" id="encorchadora-status"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">ENCAPSULADORA</div>
-            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+            <div class="w-4 h-4 bg-green-500 rounded-full" id="encapsuladora-status"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">TERMOSELLADORA</div>
-            <div class="w-4 h-4 bg-yellow-500 rounded-full"></div>
+            <div class="w-4 h-4 bg-yellow-500 rounded-full" id="termoselladora-status"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">ETIQUETADORA</div>
-            <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+            <div class="w-4 h-4 bg-red-500 rounded-full" id="etiquetadora-status"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">EMPAQUETADORA</div>
-            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+            <div class="w-4 h-4 bg-green-500 rounded-full" id="empaquetadora-status"></div>
           </div>
         </div>
       </div>
       <div class="flex flex-col items-center space-y-4">
         <div class="w-full h-64 bg-gray-200 rounded-md"></div>
         <button 
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black"
-        >
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-4 py-2 w-32 border border-solid border-black">
           EMPAQUETADORA 
         </button>
       </div>
