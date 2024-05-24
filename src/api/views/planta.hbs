@@ -46,8 +46,7 @@
 
     @media (min-width: 768px) {
       .grid-container {
-        grid-template-columns: repeat(3,
-            1fr);
+        grid-template-columns: repeat(3,1fr);
       }
     }
 
@@ -56,6 +55,18 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+
+    .grid-container-3 {
+      display: grid;
+      gap: 6px;
+      grid-template-columns: repeat(1, 1fr); 
+    }
+    @media (min-width: 1024px) {
+      .grid-container-3 {
+        grid-template-columns: repeat(3, 1fr); 
+      }
+    }
+
   </style>
 </head>
 
@@ -100,7 +111,7 @@
       </div>
     </div>
 
-    <div class="grid-container w-full">
+    <div class="grid-container-3 w-full">
       <div class="flex flex-col items-center space-y-4">
         <div class="imagen-contenedor rounded-md bg-gray-200">
           <img src="/styles/images/llenadora.png" alt="LLENADORA" class="maquina-imagen" />
