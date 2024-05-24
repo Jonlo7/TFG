@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maquinas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+   <style>
+    /* Estilos adicionales para centrar los nombres y estados de las máquinas */
+    .estado-maquina {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+    .estado-maquina div {
+      flex: 1;
+      text-align: center;
+    }
+  </style>
 </head>
 <body class="bg-gray-100">
   <div class="flex flex-col space-y-10 bg-white md:p-10 w-full">
@@ -44,32 +57,32 @@
           LLENADORA
         </button>
       </div>
-      <div class="w-full sm:w-80">
-        <div class="text-lg font-semibold mb-4">Maquinas Activas</div>
+      <div class="w-full sm:w-80 mx-auto">
+        <div class="text-lg font-semibold mb-4 text-center">Maquinas Activas</div>
         <div class="space-y-2">
           <div class="flex items-center justify-between">
             <div class="font-medium">LLENADORA</div>
-            <div class="w-4 h-4 bg-green-500 rounded-full" id="llenadora-status"></div>
+            <div id="llenadora-status" class="w-4 h-4 bg-green-500 rounded-full"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">ENCORCHADORA</div>
-            <div class="w-4 h-4 bg-red-500 rounded-full" id="encorchadora-status"></div>
+            <div id="encorchadora-status" class="w-4 h-4 bg-red-500 rounded-full"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">ENCAPSULADORA</div>
-            <div class="w-4 h-4 bg-green-500 rounded-full" id="encapsuladora-status"></div>
+            <div id="encapsuladora-status" class="w-4 h-4 bg-green-500 rounded-full"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">TERMOSELLADORA</div>
-            <div class="w-4 h-4 bg-yellow-500 rounded-full" id="termoselladora-status"></div>
+            <div id="termoselladora-status" class="w-4 h-4 bg-yellow-500 rounded-full"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">ETIQUETADORA</div>
-            <div class="w-4 h-4 bg-red-500 rounded-full" id="etiquetadora-status"></div>
+            <div id="etiquetadora-status" class="w-4 h-4 bg-red-500 rounded-full"></div>
           </div>
           <div class="flex items-center justify-between">
             <div class="font-medium">EMPAQUETADORA</div>
-            <div class="w-4 h-4 bg-green-500 rounded-full" id="empaquetadora-status"></div>
+            <div id="empaquetadora-status" class="w-4 h-4 bg-green-500 rounded-full"></div>
           </div>
         </div>
       </div>
@@ -82,5 +95,33 @@
       </div>
     </div>
   </div>
+ 
+<script>
+   /*
+    const estadosMaquinas = {
+      llenadora: true,  // 1 significa activo
+      encorchadora: false, // 0 significa inactivo
+      encapsuladora: true,
+      termoselladora: false,
+      etiquetadora: false,
+      empaquetadora: true
+    };
+
+    // Función para actualizar el color del estado según el valor booleano
+    function actualizarEstado(elementoId, estado) {
+      const colorClase = estado ? 'bg-green-500' : 'bg-red-500';
+      document.getElementById(elementoId).className = 'w-4 h-4 rounded-full ' + colorClase;
+    }
+
+    // Actualizar el color de los estados de las máquinas
+    actualizarEstado('llenadora-status', estadosMaquinas.llenadora);
+    actualizarEstado('encorchadora-status', estadosMaquinas.encorchadora);
+    actualizarEstado('encapsuladora-status', estadosMaquinas.encapsuladora);
+    actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
+    actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
+    actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
+  */
+  </script>
+
 </body>
 </html>
