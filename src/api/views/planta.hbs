@@ -152,25 +152,30 @@
     </div>
   </div>
 
-  <script>
+<script>
+    // Estados de las máquinas
+    const estadosMaquinas = {
+      llenadora: true,  // 1 significa activo
+      encorchadora: false, // 0 significa inactivo
+      encapsuladora: true,
+      termoselladora: false,
+      etiquetadora: false,
+      empaquetadora: true
+    };
 
-      // Estados de las máquinas const estadosMaquinas = { llenadora: true, // 1
-      significa activo encorchadora: false, // 0 significa inactivo
-      encapsuladora: true, termoselladora: false, etiquetadora: false,
-        empaquetadora: true }; // Función para actualizar el color de los estados
-      de las máquinas function actualizarEstado(elementoId, estado) {
-      const
-      colorClase = estado ? 'bg-green-500' : 'bg-red-500';
-      document.getElementById(elementoId).className = 'w-4 h-4 rounded-full ' +
-        colorClase;
-    } // Actualizar el color de los estados de las máquinas
+    // Función para actualizar el color del estado según el valor booleano
+    function actualizarEstado(elementoId, estado) {
+      const colorClase = estado ? 'bg-green-500' : 'bg-red-500';
+      document.getElementById(elementoId).className = 'w-4 h-4 rounded-full ' + colorClase;
+    }
+
+    // Actualizar el color de los estados de las máquinas
     actualizarEstado('llenadora-status', estadosMaquinas.llenadora);
     actualizarEstado('encorchadora-status', estadosMaquinas.encorchadora);
     actualizarEstado('encapsuladora-status', estadosMaquinas.encapsuladora);
     actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
     actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
     actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
-
   </script>
 </body>
 
