@@ -1,13 +1,21 @@
-<div class="flex justify-center w-full">
-    <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md p-6 space-y-4">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/styles/tailwind.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="flex justify-center w-full px-4">
+    <div class="rounded-lg border bg-white text-black shadow-sm w-full max-w-md p-6 space-y-4">
         <div class="flex flex-col space-y-1.5 p-6">
             <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Sign in</h3>
-            <p class="text-sm text-muted-foreground">Enter your credentials to sign in to your account.</p>
+            <p class="text-sm text-gray-500">Enter your credentials to sign in to your account.</p>
         </div>
         <div class="p-6">
             <form class="space-y-4" action="/login" method="POST">
                 {{> csrftokeninput }}
-
                 <div class="space-y-2">
                     <label
                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -15,7 +23,7 @@
                         Email
                     </label>
                     <input required autofocus
-                        class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        class="dark:text-black flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         type="email"
                         id="email" name="email" placeholder="Enter your email" />
                 </div>
@@ -26,15 +34,17 @@
                         Password
                     </label>
                     <input
-                        class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        class="dark:text-black flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         id="password" name="password" placeholder="Enter your password" type="password" />
                 </div>
                 <button
-                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full"
+                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
                     type="submit">
                     Log in
                 </button>
             </form>
         </div>
     </div>
-</div>
+  </div>
+</body>
+</html>
