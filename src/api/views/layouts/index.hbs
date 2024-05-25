@@ -10,7 +10,7 @@
 
     {{> confirmdialog }}
 
-    <header class="flex gap-5 p-4 border-b overflow-x-auto">
+    <header class="flex gap-5 p-4 border-b overflow-x-auto bg-white dark:bg-gray-800 fixed w-full z-50">
       <a href="/"
         class="hover:text-white border-2 border-gray-400 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-5 {{#ifEquals '' path}}bg-gray-400 text-white{{/ifEquals}}">
         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -21,46 +21,25 @@
         </svg>
         Planta
       </a>
-      <a
-              class="flex items-center gap-2 text-sm font-medium px-2.5 py-1.5 rounded-md bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
-              href="#"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="h-4 w-4"
-              >
-                <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
-              </svg>
-              Centro de Mando
-            </a>
-      <a
-              class="flex items-center gap-2 text-sm font-medium px-2.5 py-1.5 rounded-md bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
-              href="#"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="h-4 w-4"
-              >
-                <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
-              </svg>
-              Alarms
-            </a>
+            <div class="relative">
+        <button id="maquinas-btn" class="hover:text-white border-2 border-gray-400 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-5">
+          <img src="/styles/icon/maquina-robotica.png" class="w-6 h-6" alt="Maquinas">
+          Maquinas
+        </button>
+        <div id="maquinas-menu" class="hidden absolute bg-white dark:bg-gray-800 border border-gray-400 rounded-lg shadow-lg mt-2 py-2 w-48 z-50">
+          <a href="/maquina-llenadora" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Llenadora</a>
+          <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Encorchadora</a>
+          <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Encapsuladora</a>
+          <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Termoselladora</a>
+          <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Etiquetadora</a>
+          <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Empaquetadora</a>
+        </div>
+      </div>
+      <a href="/"
+        class="hover:text-white border-2 border-gray-400 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 flex items-center gap-5">
+        <img src="/styles/icon/datos.png" class="w-6 h-6" alt="Historicos">
+        Historicos
+      </a>
 
       <div class="flex-1"></div>
 
@@ -87,10 +66,9 @@
         Logout
       </button>
     </header>
-    <main class="p-4 space-x-0 space-y-3 lg:flex lg:space-x-3 overflow-auto">
+    <main class="pt-24 p-4 space-x-0 space-y-3 lg:flex lg:space-x-3 overflow-auto">
       {{{body}}}
     </main>
-
   </div>
 
   <script>
@@ -100,6 +78,20 @@
       }
       window.location.replace('/logout');
     }
+    // JavaScript para mostrar/ocultar el menú desplegable
+    document.getElementById('maquinas-btn').addEventListener('click', function () {
+      const menu = document.getElementById('maquinas-menu');
+      menu.classList.toggle('hidden');
+    })
+
+    // Cerrar el menú cuando se hace clic fuera de él
+    window.addEventListener('click', function(e) {
+      const menuBtn = document.getElementById('maquinas-btn');
+      const menu = document.getElementById('maquinas-menu');
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    })
   </script>
 </body>
 
