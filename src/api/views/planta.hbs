@@ -1,73 +1,100 @@
-<!DOCTYPE html>
-<style>
+<head>
+  <style>
     .estado-maquina {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-  }
-  
-  .estado-maquina div {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .imagen-contenedor {
-    position: relative;
-    overflow: hidden;
-    width: 90%;
-    height: 375px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black; 
-    background-color: transparent; 
-  }
-  
-  .maquina-imagen {
-    max-width: 85%;
-    max-height: 85%;
-    object-fit: cover; 
-    object-position: center;
-  }
-  
-  .centrado {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%; 
-  }
-  
-  .grid-container {
-    display: grid;
-    gap: 6px;
-    grid-template-columns: repeat(1, 1fr); 
-  }
-  
-  @media (min-width: 768px) {
-    .grid-container {
-      grid-template-columns: repeat(2, 1fr); 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
     }
-  }
-  
-  @media (min-width: 1024px) {
-    .grid-container {
-      grid-template-columns: repeat(4, 1fr); 
+
+    .estado-maquina div {
+      flex: 1;
+      text-align: center;
     }
-  }
-  
-  .grid-container-3 {
-    display: grid;
-    gap: 6px;
-    grid-template-columns: repeat(1, 1fr); 
-  }
-  
-  @media (min-width: 1024px) {
+
+    .imagen-contenedor {
+      position: relative;
+      overflow: hidden;
+      width: 90%;
+      height: 375px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      background-color: transparent;
+    }
+
+    .maquina-imagen {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .centrado {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .grid-container {
+      display: grid;
+      gap: 6px;
+      grid-template-columns: repeat(1, 1fr);
+      margin-bottom: 1px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .grid-container-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     .grid-container-3 {
-      grid-template-columns: repeat(3, 1fr);
+      display: grid;
+      gap: 6px;
+      grid-template-columns: repeat(1, 1fr);
+      margin-bottom: 1px;
     }
-  }
-</style>
+
+    .boton-maquina {
+      margin-top: 10px;
+    }
+
+    .estado-maquinas-container {
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 767px) {
+      .flex-col .space-y-4 {
+        margin-bottom: 30px; 
+      }
+      .estado-maquinas-container {
+        margin-bottom: 15px; 
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .flex-col .space-y-4 {
+        margin-bottom: 20px; 
+      }
+      .estado-maquinas-container { 
+        margin-bottom: 10px; 
+      }
+    }
+
+  </style>
+</head>
 
 <body class="bg-gray-100">
   <div class="flex flex-col space-y-10 bg-white md:p-10 w-full">
@@ -76,9 +103,9 @@
         <div class="imagen-contenedor shadow-lg rounded-md">
           <img src="/styles/images/encorchadora.png" alt="ENCORCHADORA" class="maquina-imagen">
         </div>
-        <button 
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-        onclick="window.location.href = '/maquina-no-disponible';">
+        <button
+          class="boton-maquina text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          onclick="window.location.href = '/maquina-no-disponible';">
           ENCORCHADORA
         </button>
       </div>
@@ -86,9 +113,9 @@
         <div class="imagen-contenedor shadow-lg rounded-md">
           <img src="/styles/images/encapsuladora.png" alt="ENCAPSULADORA" class="maquina-imagen">
         </div>
-        <button 
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-        onclick="window.location.href = '/maquina-no-disponible';">
+        <button
+          class="boton-maquina text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          onclick="window.location.href = '/maquina-no-disponible';">
           ENCAPSULADORA
         </button>
       </div>
@@ -96,9 +123,9 @@
         <div class="imagen-contenedor shadow-lg rounded-md">
           <img src="/styles/images/termoselladora.png" alt="TERMOSELLADORA" class="maquina-imagen">
         </div>
-        <button 
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-70%"
-        onclick="window.location.href = '/maquina-no-disponible';">
+        <button
+          class="boton-maquina text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          onclick="window.location.href = '/maquina-no-disponible';">
           TERMOSELLADORA
         </button>
       </div>
@@ -106,26 +133,25 @@
         <div class="imagen-contenedor shadow-lg rounded-md">
           <img src="/styles/images/etiquetadora.png" alt="ETIQUETADORA" class="maquina-imagen">
         </div>
-        <button 
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-70%"
+        <button
+          class="boton-maquina text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           onclick="window.location.href = '/maquina-no-disponible';">
           ETIQUETADORA
         </button>
       </div>
     </div>
-
     <div class="grid-container-3 w-full">
       <div class="flex flex-col items-center space-y-4">
         <div class="imagen-contenedor shadow-lg rounded-md">
           <img src="/styles/images/llenadora.png" alt="LLENADORA" class="maquina-imagen">
         </div>
-        <button 
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-70%"
+        <button
+          class="boton-maquina text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           onclick="window.location.href = '/maquina-llenadora';">
           LLENADORA
         </button>
       </div>
-      <div class="w-full sm:w-80 mx-auto flex flex-col items-center centrado">
+      <div class="estado-maquinas-container w-full sm:w-80 mx-auto flex flex-col items-center centrado">
         <div class="text-lg font-semibold mb-4 text-center">Maquinas Activas</div>
         <div class="space-y-2 w-full">
           <div class="estado-maquina">
@@ -158,8 +184,8 @@
         <div class="imagen-contenedor shadow-lg rounded-md">
           <img src="/styles/images/empaquetadora.png" alt="EMPAQUETADORA" class="maquina-imagen">
         </div>
-        <button 
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-70%"
+        <button
+          class="boton-maquina text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           onclick="window.location.href = '/maquina-no-disponible';">
           EMPAQUETADORA
         </button>
@@ -167,11 +193,11 @@
     </div>
   </div>
 
-<script>
+  <script>
     // Estados de las máquinas
     const estadosMaquinas = {
-      llenadora: true,  
-      encorchadora: false, 
+      llenadora: true,
+      encorchadora: false,
       encapsuladora: true,
       termoselladora: false,
       etiquetadora: false,
