@@ -83,6 +83,20 @@ async function main() {
         id_Cargo: cargo.id_Cargo,
       });
     }
+    //crear usuario de prueba
+    if ((await Trabajador.findOne({ where: { email: "jon@jon.com" } })) === null) {
+      let cargo: Cargo | null;
+      if ((cargo = await Cargo.findOne({ where: { nombre: "Operador" } })) === null) {
+        cargo = await Cargo.create({ nombre: "Operador" });
+      }
+      await Trabajador.create({
+        email: "jon@jon.com",
+        nombre: "Jon",
+        apellido: "Lopez",
+        passwordHash: hashPassword("jon"),
+        id_Cargo: cargo.id_Cargo,
+      });
+    }
 
     // generate a random number between 1 and 100
     setInterval(async () => {
