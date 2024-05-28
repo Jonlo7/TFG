@@ -7,7 +7,9 @@ const router = Router();
 router.get(
     "/maquina-llenadora",
     async (_req: Request, res: Response, next: NextFunction) => {
-        res.render("maquinaLlenadora", { layout: "index", });
+        const trabajador = _req.session.trabajador;
+        let isAdmin: boolean = trabajador?.id_Cargo === '5262b2a3-328e-4843-bede-cd02a21e5d49';
+        res.render("maquinaLlenadora", { layout: "index", isAdmin: isAdmin});
     },
 );
 
