@@ -1,7 +1,7 @@
 import { startServer } from "./api";
 import Logger from "./lib/logger";
 import { launch, unlaunch } from "./launch";
-import { Cargo, TiempoReal, Trabajador, Lote } from "./schemas";
+import { Cargo, TiempoReal, Trabajador, Lote, Alarmas } from "./schemas";
 import { hashPassword } from "./lib/crypto";
 import { TipoDato } from "./schemas/tiempoReal.schema";
 
@@ -70,6 +70,8 @@ async function main() {
     await launch();
 
     // TODO eliminar
+
+    //crear usuario Administrador
     if ((await Trabajador.findOne({ where: { email: "pepe@pepe.com" } })) === null) {
       let cargo: Cargo | null;
       if ((cargo = await Cargo.findOne({ where: { nombre: "Administrador" } })) === null) {
@@ -83,11 +85,11 @@ async function main() {
         id_Cargo: cargo.id_Cargo,
       });
     }
-    //crear usuario de prueba
+    //crear usuario Operador
     if ((await Trabajador.findOne({ where: { email: "jon@jon.com" } })) === null) {
       let cargo: Cargo | null;
-      if ((cargo = await Cargo.findOne({ where: { nombre: "Operador" } })) === null) {
-        cargo = await Cargo.create({ nombre: "Operador" });
+      if ((cargo = await Cargo.findOne({ where: { nombre: "Oficina" } })) === null) {
+        cargo = await Cargo.create({ nombre: "Oficina" });
       }
       await Trabajador.create({
         email: "jon@jon.com",
@@ -97,7 +99,68 @@ async function main() {
         id_Cargo: cargo.id_Cargo,
       });
     }
+    //crear usuario Tecnico
+    if ((await Trabajador.findOne({ where: { email: "clau@clau.com" } })) === null) {
+      let cargo: Cargo | null;
+      if ((cargo = await Cargo.findOne({ where: { nombre: "Tecnico" } })) === null) {
+        cargo = await Cargo.create({ nombre: "Tecnico" });
+      }
+      await Trabajador.create({
+        email: "clau@clau.com",
+        nombre: "Clau",
+        apellido: "Lopez",
+        passwordHash: hashPassword("clau"),
+        id_Cargo: cargo.id_Cargo,
+      });
+    }
+  //crear alarmas 
+    await Alarmas.create({
+      nombre: "Paro Inactividad",
+      descripcion: "La máquina se ha detenido por inactividad",
+    });
+    await Alarmas.create({
+      nombre: "No Entra Caudal",
+      descripcion: "Fallo en entrada de caudal, valvula abierta pero caudalimetro no detecta caudal.",
+    });
+    await Alarmas.create({
+      nombre: "Sigue Entrando Caudal",
+      descripcion: "Fallo en entrada de caudal, valvula cerrada pero caudalimetro detecta caudal.",
+    });
+    await Alarmas.create({
+      nombre: "Llenado Botellas",
+      descripcion: "Fallo en llenado de botellas, nivel de la botella incorrecto.",
+    });
+    await Alarmas.create({
+      nombre: "Fallo Motor",
+      descripcion: "Fallo en el motor de la máquina.",
+    });
+    await Alarmas.create({
+      nombre: "Nivel tanque bajo",
+      descripcion: "Fallo en el nivel del tanque, nivel del tanque por debajo del mínimo.",
+    });
+    await Alarmas.create({
+      nombre: "Nivel tanque alto",
+      descripcion: "Fallo en el nivel del tanque, nivel del tanque por encima del máximo.",
+    });
+    await Alarmas.create({
+      nombre: "Sensores",
+      descripcion: "Fallo en sensores de nivel del tanque.",
+    });
+    await Alarmas.create({
+      nombre: "Sensor nivel bajo",
+      descripcion: "Fallo en sensor nivel bajo",
+    });
+    await Alarmas.create({
+      nombre: "Sensor nivel alto",
+      descripcion: "Fallo en sensor nivel alto",
+    });
+    await Alarmas.create({
+      nombre: "Seta de emergencia",
+      descripcion: "Seta de emergencia pulsada",
+    });
+
     
+
     // server
     const port = await startServer();
     logger.info(`Server started at port ${port}`);
