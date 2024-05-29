@@ -1,320 +1,153 @@
-<main class="grid / items-start gap-4 p-4">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 items-start gap-4">
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="flex flex-col space-y-1.5 p-6">
-                <h3 class="whitespace-nowrap font-semibold tracking-tight text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-4 w-4 mr-1 relative -top-0.5">
-                        <path
-                            d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2">
-                        </path>
-                    </svg>
-                    Recent Activity
-                </h3>
-            </div>
-            <div class="p-6 text-sm">
-                <ul class="grid gap-2.5">
-                    <li class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-4 w-4">
-                            <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
-                        </svg>
-                        Temperature sensor reading updated
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-4 w-4">
-                            <line x1="12" x2="12" y1="20" y2="10"></line>
-                            <line x1="18" x2="18" y1="20" y2="4"></line>
-                            <line x1="6" x2="6" y1="20" y2="16"></line>
-                        </svg>
-                        Pressure values logged to database
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-4 w-4">
-                            <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"></path>
-                            <path d="M9.6 4.6A2 2 0 1 1 11 8H2"></path>
-                            <path d="M12.6 19.4A2 2 0 1 0 14 16H2"></path>
-                        </svg>
-                        Anomaly detected in wind speed data
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="h-4 w-4">
-                            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
-                        </svg>
-                        Data synced with cloud server
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="flex flex-col space-y-1.5 p-6">
-                <h3 class="whitespace-nowrap font-semibold tracking-tight text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-4 w-4 mr-1 relative -top-0.5">
-                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                        <polyline points="16 7 22 7 22 13"></polyline>
-                    </svg>
-                    Trends
-                </h3>
-            </div>
-            <div class="p-6">
-                <div class="grid gap-2.5">
-                    <div class="flex items-center justify-between gap-2.5">
-                        <div class="flex items-center gap-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="h-6 w-6">
-                                <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
-                            </svg>
-                            <div class="text-sm font-medium">Temperature</div>
-                        </div>
-                        <div class="text-sm font-medium">25°C</div>
-                    </div>
-                    <div class="flex items-center justify-between gap-2.5">
-                        <div class="flex items-center gap-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="h-6 w-6">
-                                <line x1="12" x2="12" y1="20" y2="10"></line>
-                                <line x1="18" x2="18" y1="20" y2="4"></line>
-                                <line x1="6" x2="6" y1="20" y2="16"></line>
-                            </svg>
-                            <div class="text-sm font-medium">Pressure</div>
-                        </div>
-                        <div class="text-sm font-medium">1013 hPa</div>
-                    </div>
-                    <div class="flex items-center justify-between gap-2.5">
-                        <div class="flex items-center gap-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="h-6 w-6">
-                                <path
-                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
-                                </path>
-                            </svg>
-                            <div class="text-sm font-medium">Caudalimetro</div>
-                        </div>
-                        <div class="text-sm font-medium" id="caudalimetro">[CARGANDO]</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="flex flex-col space-y-1.5 p-6">
-                <h3 class="whitespace-nowrap font-semibold tracking-tight text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-4 w-4 mr-1 relative -top-0.5">
-                        <path
-                            d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2">
-                        </path>
-                    </svg>
-                    Devices
-                </h3>
-            </div>
-            <div class="p-6">
-                <div class="grid gap-2.5">
-                    <div class="flex items-center justify-between gap-2.5">
-                        <div class="text-sm font-medium">Motor Giro</div>
-                        <button type="button" role="switch" aria-checked="true" data-state="checked" value="on"
-                            class="peer inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input">
-                            <span data-state="checked"
-                                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"></span>
-                        </button>
-                        <input type="checkbox" aria-hidden="true"
-                            style="transform:translateX(-100%);position:absolute;pointer-events:none;opacity:0;margin:0"
-                            tabindex="-1" checked="" value="on" />
-                    </div>
-                    <div class="flex items-center justify-between gap-2.5">
-                        <div class="text-sm font-medium">Valvula</div>
-                        <button type="button" role="switch" aria-checked="false" data-state="unchecked" value="on"
-                            class="peer inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input">
-                            <span data-state="unchecked"
-                                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"></span>
-                        </button>
-                        <input type="checkbox" aria-hidden="true"
-                            style="transform:translateX(-100%);position:absolute;pointer-events:none;opacity:0;margin:0"
-                            tabindex="-1" value="on" />
-                    </div>
-                    <div class="flex items-center justify-between gap-2.5">
-                        <div class="text-sm font-medium">Cinta</div>
-                        <button type="button" role="switch" aria-checked="true" data-state="checked" value="on"
-                            class="peer inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input">
-                            <span data-state="checked"
-                                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"></span>
-                        </button>
-                        <input type="checkbox" aria-hidden="true"
-                            style="transform:translateX(-100%);position:absolute;pointer-events:none;opacity:0;margin:0"
-                            tabindex="-1" checked="" value="on" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="flex flex-col space-y-1.5 p-6">
-                <h3 class="whitespace-nowrap font-semibold tracking-tight text-base">Control Room</h3>
-            </div>
-            <div class="p-6">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="grid gap-4">
-                        <div class="flex items-center justify-between gap-4">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="h-8 w-8">
-                                    <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
-                                </svg>
-                                <div class="text-2xl font-semibold">Temperature</div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="text-4xl font-bold">25°C</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between gap-4">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="h-8 w-8">
-                                    <line x1="12" x2="12" y1="20" y2="10"></line>
-                                    <line x1="18" x2="18" y1="20" y2="4"></line>
-                                    <line x1="6" x2="6" y1="20" y2="16"></line>
-                                </svg>
-                                <div class="text-2xl font-semibold">Pressure</div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="text-4xl font-bold">1013 hPa</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div class="flex items-center justify-between gap-4">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="h-8 w-8">
-                                    <path
-                                        d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
-                                    </path>
-                                </svg>
-                                <div class="text-2xl font-semibold">Humidity</div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="text-4xl font-bold">50%</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between gap-4">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="h-8 w-8">
-                                    <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"></path>
-                                    <path d="M9.6 4.6A2 2 0 1 1 11 8H2"></path>
-                                    <path d="M12.6 19.4A2 2 0 1 0 14 16H2"></path>
-                                </svg>
-                                <div class="text-2xl font-semibold">Wind Speed</div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="text-4xl font-bold">10 m/s</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="flex flex-col space-y-1.5 p-6">
-                <h3 class="whitespace-nowrap font-semibold tracking-tight text-base">Sensors</h3>
-            </div>
-            <div class="p-6">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="grid gap-2">
-                        <div class="flex items-center gap-2">
-                            <div class="text-sm font-medium">Temperature</div>
-                            <div class="text-2xl font-bold">25°C</div>
-                        </div>
-                        <div class="grid w-3/4 rounded-lg bg-gray-100">
-                            <div class="h-1 rounded-lg bg-gray-300"></div>
-                        </div>
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="flex items-center gap-2">
-                            <div class="text-sm font-medium">Pressure</div>
-                            <div class="text-2xl font-bold">1013 hPa</div>
-                        </div>
-                        <div class="grid w-3/4 rounded-lg bg-gray-100">
-                            <div class="h-1 rounded-lg bg-gray-300"></div>
-                        </div>
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="flex items-center gap-2">
-                            <div class="text-sm font-medium">Humidity</div>
-                            <div class="text-2xl font-bold">50%</div>
-                        </div>
-                        <div class="grid w-3/4 rounded-lg bg-gray-100">
-                            <div class="h-1 rounded-lg bg-gray-300"></div>
-                        </div>
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="flex items-center gap-2">
-                            <div class="text-sm font-medium">Wind Speed</div>
-                            <div class="text-2xl font-bold">10 m/s</div>
-                        </div>
-                        <div class="grid w-3/4 rounded-lg bg-gray-100">
-                            <div class="h-1 rounded-lg bg-gray-300"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="flex flex-col space-y-1.5 p-6">
-                <h3 class="whitespace-nowrap font-semibold tracking-tight text-base">Analytics</h3>
-            </div>
-            <div class="p-6">
-                <div class="grid gap-4">
-                    <div class="grid gap-2">
-                        <div class="text-sm font-medium">Average Temperature</div>
-                        <div class="text-3xl font-bold">28°C</div>
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="text-sm font-medium">Peak Pressure</div>
-                        <div class="text-3xl font-bold">1020 hPa</div>
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="text-sm font-medium">Current Load</div>
-                        <div class="text-3xl font-bold">80%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-
-<script>
-
-    async function getTiempoReal() {
-        const result = await fetch('/tiempo-real', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json());
-
-        const caudalimetroValue = result.todasTiempoReal.find(v => v.clave === 'caudalimetro').valorParseado;
-        document.getElementById('caudalimetro').innerText = caudalimetroValue.toFixed(2) + ' L/min';
+<head>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: 30% 40% 30%;
+      gap: 6px;
+      padding: 6px;
+      height: 86vh;
     }
 
-    setInterval(getTiempoReal, 1000);
-</script>
+    .parametros,
+    .maquina-botones,
+    .estado-alarmas {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .parametros,
+    .estado-alarmas {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .maquina-botones {
+      display: grid;
+      grid-template-rows: 60% 40%;
+      gap: 6px;
+    }
+
+    .estado-alarmas {
+      grid-template-rows: 25% 75%;
+    }
+
+    .estado,
+    .alarmas {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .alarmas h3 {
+      margin-bottom: 1rem;
+    }
+
+    .parametros .grid,
+    .botones .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .parametros label,
+    .botones button {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .parametros input,
+    .botones button {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .botones button {
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+    }
+
+    .botones button:hover {
+      background-color: #2563eb;
+    }
+
+    .botones button:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-950">
+  <div class="grid grid-cols-3 gap-6 p-6 h-full w-full">
+    <div class="parametros bg-white rounded-lg shadow-md p-4 space-y-4 dark:bg-gray-950">
+      <h3 class="text-lg font-bold">Parametrización</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="variable1" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
+            Variable 1
+          </label>
+          <input id="variable1"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            type="number" />
+        </div>
+        <div>
+          <label for="variable2" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
+            Variable 2
+          </label>
+          <input id="variable2"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            type="number" />
+        </div>
+      </div>
+    </div>
+    <div class="maquina-botones grid grid-rows-2 gap-6 h-full">
+      <div class="maquina bg-white rounded-lg shadow-md p-4 space-y-4 dark:bg-gray-950">
+        <h3 class="text-lg font-bold">Imagen principal</h3>
+        <img src="/placeholder.svg" width="800" height="600" alt="Imagen principal" class="w-full h-auto rounded-md"
+          style="aspect-ratio: 800 / 600; object-fit: cover;" />
+      </div>
+      <div class="botones bg-white rounded-lg shadow-md p-4 space-y-4 dark:bg-gray-950">
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            Botón 1
+          </button>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            Botón 2
+          </button>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            Botón 3
+          </button>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            Botón 4
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="estado-alarmas grid grid-rows-2 gap-6 h-full">
+      <div class="estado bg-white rounded-lg shadow-md p-4 space-y-4 dark:bg-gray-950">
+        <h3 class="text-lg font-bold">Estado</h3>
+        <div class="flex items-center justify-center h-full">
+          <div
+            class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl font-bold">
+            M
+          </div>
+        </div>
+      </div>
+      <div class="alarmas bg-white rounded-lg shadow-md p-4 space-y-4 dark:bg-gray-950">
+        <h3 class="text-lg font-bold">Alarmas</h3>
+      </div>
+    </div>
+  </div>
+</body>
