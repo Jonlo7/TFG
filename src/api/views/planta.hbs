@@ -16,7 +16,7 @@
       position: relative;
       overflow: hidden;
       width: 90%;
-      height: 375px;
+      height: 330px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -42,24 +42,25 @@
       display: grid;
       gap: 6px;
       grid-template-columns: repeat(1, 1fr);
-      margin-bottom: 1px;
+      margin-bottom: 30px;
     }
 
     .grid-container-3 {
       display: grid;
       gap: 6px;
       grid-template-columns: repeat(1, 1fr);
-      margin-bottom: 1px;
     }
     @media (min-width: 768px) {
       .grid-container {
         grid-template-columns: repeat(2, 1fr);
+        margin-top: 10px;
       }
     }
 
     @media (min-width: 1024px) {
       .grid-container {
         grid-template-columns: repeat(4, 1fr);
+        margin-top: 10px;
       }
       .grid-container-3 {
         grid-template-columns: repeat(3, 1fr);
@@ -96,7 +97,7 @@
 </head>
 
 <body class="bg-gray-100">
-  <div class="flex flex-col space-y-10 bg-white md:p-10 w-full">
+  <div class="flex flex-col bg-white  w-full" >
     <div class="grid-container w-full mb-10">
       <div class="flex flex-col items-center space-y-4">
         <div class="imagen-contenedor shadow-lg rounded-md">
@@ -219,4 +220,3 @@
   </script>
 </body>
 
-</html>
