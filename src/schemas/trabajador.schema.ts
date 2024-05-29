@@ -11,7 +11,7 @@ import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/
 import { TrabajadorTableName } from "./tableDefinition";
 import { Cargo } from "./cargo.schema";
 
-@Table({ tableName: TrabajadorTableName, timestamps: true })
+@Table({ tableName: TrabajadorTableName, timestamps: false })
 export class Trabajador extends Model<
   InferAttributes<Trabajador>,
   InferCreationAttributes<Trabajador>

@@ -9,7 +9,7 @@ import {
   import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/decorators-legacy';
   import { BotonesTableName } from "./tableDefinition";
 
-@Table({ tableName: BotonesTableName, timestamps: true, indexes: []})
+@Table({ tableName: BotonesTableName, timestamps: false, indexes: []})
 export class Botones extends Model<
   InferAttributes<Botones>,
   InferCreationAttributes<Botones>

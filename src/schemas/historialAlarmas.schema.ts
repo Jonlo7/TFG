@@ -12,7 +12,7 @@ import {
 import { Alarmas } from "./alarmas.schema";
 import { Lote } from "./lote.schema";
 
-@Table({ tableName: HistorialAlarmasTableName, timestamps: true })
+@Table({ tableName: HistorialAlarmasTableName, timestamps: false })
 export class HistorialAlarmas extends Model<
   InferAttributes<HistorialAlarmas>,
   InferCreationAttributes<HistorialAlarmas>

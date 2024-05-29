@@ -9,7 +9,7 @@ import {
 import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/decorators-legacy';
 import { CargoTableName } from "./tableDefinition";
 
-@Table({ tableName: CargoTableName, timestamps: true, indexes: [] })
+@Table({ tableName: CargoTableName, timestamps: false, indexes: [] })
 export class Cargo extends Model<
   InferAttributes<Cargo>,
   InferCreationAttributes<Cargo>

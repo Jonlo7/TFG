@@ -12,7 +12,7 @@ import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/
 import { TurnoTrabajadoTableName } from "./tableDefinition";
 import { Trabajador } from "./trabajador.schema";
 
-@Table({ tableName: TurnoTrabajadoTableName, timestamps: true })
+@Table({ tableName: TurnoTrabajadoTableName, timestamps: false })
 export class TurnoTrabajado extends Model<
   InferAttributes<TurnoTrabajado>,
   InferCreationAttributes<TurnoTrabajado>

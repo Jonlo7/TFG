@@ -9,7 +9,7 @@ import {
   import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/decorators-legacy';
 import { LoteTableName } from "./tableDefinition";
 
-@Table({ tableName: LoteTableName, timestamps: true, indexes: []})
+@Table({ tableName: LoteTableName, timestamps: false, indexes: []})
 export class Lote extends Model<
   InferAttributes<Lote>,
   InferCreationAttributes<Lote>

@@ -9,7 +9,7 @@ import {
   import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/decorators-legacy';
   import { AlarmasTableName } from "./tableDefinition";
 
-@Table({ tableName: AlarmasTableName, timestamps: true, indexes: []})
+@Table({ tableName: AlarmasTableName, timestamps: false, indexes: []})
 export class Alarmas extends Model<
   InferAttributes<Alarmas>,
   InferCreationAttributes<Alarmas>

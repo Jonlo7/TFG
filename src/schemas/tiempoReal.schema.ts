@@ -17,7 +17,7 @@ export enum TipoDato {
   DATE = "DATE",
 }
 
-@Table({ tableName: TiempoRealTableName, timestamps: true, indexes: [] })
+@Table({ tableName: TiempoRealTableName, timestamps: false, indexes: [] })
 export class TiempoReal extends Model<
   InferAttributes<TiempoReal>,
   InferCreationAttributes<TiempoReal>
