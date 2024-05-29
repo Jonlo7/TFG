@@ -97,19 +97,7 @@ async function main() {
         id_Cargo: cargo.id_Cargo,
       });
     }
-
-    // generate a random number between 1 and 100
-    setInterval(async () => {
-      const rand = Math.random() * 101;
-      //if exists update, if not create it
-      const tiempoReal = await TiempoReal.findOne({ where: { clave: 'caudalimetro' } });
-      if (tiempoReal) {
-        await tiempoReal.update({ valor: rand.toString() });
-      }
-      else {
-        await TiempoReal.create({ clave: 'caudalimetro', valor: rand.toString(), tipo: TipoDato.REAL });
-      }
-    }, 1000);
+    
     // server
     const port = await startServer();
     logger.info(`Server started at port ${port}`);
