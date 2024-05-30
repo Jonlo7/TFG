@@ -1,0 +1,148 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto px-4 py-8">
+  <div class="bg-white dark:bg-gray-950 rounded-lg shadow-lg">
+    <div class="p-4 border-b dark:border-gray-800">
+      <h2 class="text-lg font-semibold">Historial de Lotes</h2>
+    </div>
+    <div class="p-4">
+      <div class="mb-4">
+        <input
+          class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+          placeholder="Buscar por número de lote, fecha, etc."
+        />
+      </div>
+      <div class="relative w-full overflow-auto">
+        <table class="w-full caption-bottom text-sm">
+          <thead class="[&amp;_tr]:border-b">
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Número de Lote
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Fecha Inicio
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Fecha Fin
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Número de Botellas
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Tiempo Trabajado
+              </th>
+            </tr>
+          </thead>
+          <tbody class="[&amp;_tr:last-child]:border-0">
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0001</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-15</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-20</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">1000</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">120 horas</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0002</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-21</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-25</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">800</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">100 horas</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0003</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-01</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-05</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">900</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">110 horas</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0004</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-10</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-15</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">950</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">115 horas</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0005</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-20</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-25</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">1100</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">130 horas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white dark:bg-gray-950 rounded-lg shadow-lg">
+    <div class="p-4 border-b dark:border-gray-800">
+      <h2 class="text-lg font-semibold">Historial de Alarmas</h2>
+    </div>
+    <div class="p-4">
+      <div class="mb-4">
+        <input
+          class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+          placeholder="Buscar por ID, nombre, etc."
+        />
+      </div>
+      <div class="relative w-full overflow-auto">
+        <table class="w-full caption-bottom text-sm">
+          <thead class="[&amp;_tr]:border-b">
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                ID Alarma
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Nombre Alarma
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Hora de Salto
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Hora de Resolución
+              </th>
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                Número de Lote
+              </th>
+            </tr>
+          </thead>
+          <tbody class="[&amp;_tr:last-child]:border-0">
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">AL-0001</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Temperatura Alta</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-16 10:30</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-16 11:15</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0001</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">AL-0002</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Presión Baja</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-22 14:20</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-04-22 15:00</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0002</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">AL-0003</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Nivel Bajo</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-02 08:45</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-02 09:30</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0003</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">AL-0004</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Vibración Alta</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-11 16:10</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-11 16:45</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0004</td>
+            </tr>
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">AL-0005</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Falla Eléctrica</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-21 12:00</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2023-05-21 12:45</td>
+              <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">LT-0005</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
