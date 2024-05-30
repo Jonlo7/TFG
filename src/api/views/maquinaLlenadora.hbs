@@ -147,11 +147,21 @@
             border-radius: 50%;
         }
 
-        .botones input:checked + .slider {
-            background-color: rgb(99 102 241);
+        /* Switches en sección de Parámetros - fondo verde cuando activados */
+        .parametros .switch input:checked + .slider {
+            background-color: #4CAF50;
         }
 
-        .botones input:checked + .slider:before {
+        .parametros .switch input:checked + .slider:before {
+            transform: translateX(32px);
+        }
+
+        /* Switches en sección de Alarmas - fondo rojo cuando activados */
+        .alarmas .switch input:checked + .slider {
+            background-color: #FF0000;
+        }
+
+        .alarmas .switch input:checked + .slider:before {
             transform: translateX(32px);
         }
 
@@ -178,7 +188,6 @@
 </head>
 
 <body>
-
     <div class="space-y-4 col col-1">
         <div class="parametros">
             <h3 class="text-lg font-bold">Parametros</h3>
@@ -201,27 +210,27 @@
                     <label for="aspirador"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Aspirador</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="aspirador" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
                 <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                     <label for="cinta" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Cinta</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="cinta" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
                 <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                     <label for="motor" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Motor</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="motor" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -229,9 +238,9 @@
                     <label for="valvula"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Valvula</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="valvula" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -239,9 +248,9 @@
                     <label for="sensor-nivel-alto"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Alto</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="sensor-nivel-alto" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -249,9 +258,9 @@
                     <label for="sensor-nivel-bajo"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Bajo</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="sensor-nivel-bajo" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -259,9 +268,9 @@
                     <label for="sensor-giro" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor
                         Giro</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="sensor-giro" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -374,9 +383,9 @@
                     <label for="paro-inactividad"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Paro por inactividad</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="paro-inactividad" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -384,9 +393,9 @@
                     <label for="seta-emergencia" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Seta
                         de emergencia</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="seta-emergencia" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -394,9 +403,9 @@
                     <label for="llenado-botellas"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Llenado de Botellas</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="llenado-botellas" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -404,9 +413,9 @@
                     <label for="nivel-tanque-alto"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nivel tanque alto</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="nivel-tanque-alto" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -414,9 +423,9 @@
                     <label for="nivel-tanque-bajo"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nivel tanque bajo</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="nivel-tanque-bajo" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -424,9 +433,9 @@
                     <label for="no-entra-caudal" class="block text-sm font-medium text-gray-700 dark:text-gray-400">No
                         entra caudal</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="no-entra-caudal" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -434,9 +443,9 @@
                     <label for="sigue-entrando-caudal"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sigue entrando caudal</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="sigue-entrando-caudal" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -444,9 +453,9 @@
                     <label for="fallo-motor" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fallo
                         motor</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="fallo-motor" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -454,9 +463,9 @@
                     <label for="fallo-sensores" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fallo
                         sensores</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="fallo-sensores" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -464,9 +473,9 @@
                     <label for="sensor-nivel-alto"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor nivel alto</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="sensor-nivel-alto" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
@@ -474,9 +483,9 @@
                     <label for="sensor-nivel-bajo"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor nivel bajo</label>
                     <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in">
+                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                         <input type="checkbox" id="sensor-nivel-bajo" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
                         <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                     </div>
                 </div>
