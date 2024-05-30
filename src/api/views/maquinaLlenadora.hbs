@@ -9,6 +9,7 @@
         }
 
         .parametros,
+        .lote,
         .maquina,
         .botones,
         .estado,
@@ -16,7 +17,7 @@
             background-color: #fff;
             border-radius: 0.5rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
+            padding: 0.5rem;
             display: flex;
             flex-direction: column;
         }
@@ -24,14 +25,13 @@
         .grid-container {
             display: flex;
             height: 86vh;
-            box-sizing: border-box;
         }
 
         .col {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            padding: 1.5rem;
+            padding: 0.5rem;
             box-sizing: border-box;
         }
 
@@ -51,15 +51,15 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .maquina {
-            flex: 0 1 60%;
+            flex: 0 1 65%;
         }
 
         .botones {
-            flex: 0 1 40%;
+            flex: 0 1 35%;
         }
 
         .estado-alarmas {
@@ -83,6 +83,69 @@
             object-fit: contain;
         }
 
+        .botones {
+            flex: 0 1 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .botones .switch-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .botones .switch-container label {
+            font-weight: bold;
+        }
+
+        .botones .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 28px;
+        }
+
+        .botones .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .botones .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 23px;
+        }
+
+        .botones .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .botones input:checked + .slider {
+            background-color: rgb(99 102 241);
+        }
+
+        .botones input:checked + .slider:before {
+            transform: translateX(32px);
+        }
+
         .relative input:checked+.block {
             background-color: #4CAF50;
         }
@@ -103,21 +166,21 @@
             <div class="parametros">
                 <h3 class="text-lg font-bold">Parametros</h3>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="nivel-tanque"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nivel del Tanque</label>
                         <input id="nivel-tanque"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                             type="number" disabled />
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="caudalimetro"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Caudalimetro</label>
                         <input id="caudalimetro"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                             type="number" disabled />
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="aspirador"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Aspirador</label>
                         <div
@@ -127,7 +190,7 @@
                             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="cinta"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Cinta</label>
                         <div
@@ -137,7 +200,7 @@
                             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="motor"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Motor</label>
                         <div
@@ -147,7 +210,7 @@
                             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="valvula"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Valvula</label>
                         <div
@@ -157,7 +220,7 @@
                             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="sensor-nivel-alto"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Alto</label>
                         <div
@@ -167,7 +230,7 @@
                             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="sensor-nivel-bajo"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Bajo</label>
                         <div
@@ -177,7 +240,7 @@
                             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                         </div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="sensor-giro"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Giro</label>
                         <div
@@ -189,31 +252,31 @@
                     </div>
                 </div>
             </div>
-            <div class="Lote">
+            <div class="lote">
                 <h3 class="text-lg font-bold">Lote</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="numero-lote"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Numero del lote</label>
                         <input id="numero-lote"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                             type="number" disabled />
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="fechaInicio-lote"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha inicio</label>
                         <input id="fechaInicio-lote"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                             type="number" disabled />
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="fechaFin-lote"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha cierre</label>
                         <input id="fechaFin-lote"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                             type="number" disabled />
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="numeroBotellas-lote"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Numero de
                             botellas</label>
@@ -221,7 +284,7 @@
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                             type="number" disabled />
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
                         <label for="tiempo-lote"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Tiempo de
                             produccion</label>
@@ -237,22 +300,33 @@
                 <div class="maquina">
                     <h3 class="text-lg font-bold">Maquina Llenadora</h3>
                     <img src="/styles/images/llenadora.png" alt="Imagen principal" class="w-full h-auto rounded-md"
-                        style="aspect-ratio: 800 / 600; object-fit: contain;" />
+                        style="aspect-ratio: 425 / 300; object-fit: contain;" />
                 </div>
                 <div class="botones">
-                    <div class="grid grid-cols-2 gap-4">
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Botón
-                            1</button>
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Botón
-                            2</button>
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Botón
-                            3</button>
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Botón
-                            4</button>
+                    <div class="grid grid-cols-1 gap-1">
+                    <div class="activacion-buttons">
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-4/12 me-2 mb-2">Marcha</button>
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-4/12 me-2 mb-2">Paro</button>
+                        <button class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-4/12 me-2 mb-2">Emergencia</button>
+                    </div>
+                    <div class="switch-container">
+                        <label for="mode-switch">Automático</label>
+                        <label class="switch">
+                            <input type="checkbox" id="mode-switch">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="mode-switch">Manual</label>
+                    </div>
+                    <div class="salidas-buttons ">
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Cinta</button>
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Aspiradora</button>
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Motor Giro</button>
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Valvula</button>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-5/12 me-2 mb-2">Crear Lote</button>
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-5/12 me-2 mb-2">Terminar Lote</button>
+                    </div> 
                     </div>
                 </div>
             </div>
