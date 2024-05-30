@@ -50,6 +50,7 @@
       gap: 6px;
       grid-template-columns: repeat(1, 1fr);
     }
+
     @media (min-width: 768px) {
       .grid-container {
         grid-template-columns: repeat(2, 1fr);
@@ -62,6 +63,7 @@
         grid-template-columns: repeat(4, 1fr);
         margin-top: 10px;
       }
+
       .grid-container-3 {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -77,27 +79,28 @@
 
     @media (max-width: 767px) {
       .flex-col .space-y-4 {
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
       }
+
       .estado-maquinas-container {
-        margin-bottom: 15px; 
+        margin-bottom: 15px;
       }
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
       .flex-col .space-y-4 {
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
       }
-      .estado-maquinas-container { 
-        margin-bottom: 10px; 
+
+      .estado-maquinas-container {
+        margin-bottom: 10px;
       }
     }
-
   </style>
 </head>
 
 <body class="bg-gray-100">
-  <div class="flex flex-col bg-white  w-full" >
+  <div class="flex flex-col bg-white  w-full">
     <div class="grid-container w-full mb-10">
       <div class="flex flex-col items-center space-y-4">
         <div class="imagen-contenedor shadow-lg rounded-md">
@@ -219,4 +222,3 @@
     actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
   </script>
 </body>
-
