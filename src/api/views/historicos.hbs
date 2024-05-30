@@ -1,81 +1,90 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto px-4 py-8 w-full">
-  <div class="col-span-1 md:col-span-1 bg-white dark:bg-gray-950 rounded-lg shadow-lg">
-    <div class="p-4 border-b dark:border-gray-800">
-      <h2 class="text-lg font-semibold">Historial de Lotes</h2>
-    </div>
-    <div class="p-4">
-      <div class="mb-4">
-        <input
-          class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
-          placeholder="Buscar por número de lote, fecha, etc."
-        />
+<body>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto px-4 py-8 w-full">
+    <div class="col-span-1 md:col-span-1 bg-white dark:bg-gray-950 rounded-lg shadow-lg">
+      <div class="p-4 border-b dark:border-gray-800">
+        <h2 class="text-lg font-semibold">Historial de Lotes</h2>
       </div>
-      <div class="relative w-full overflow-auto">
-        <table class="w-full caption-bottom text-sm">
-          <thead class="[&amp;_tr]:border-b">
-            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Número de Lote
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Fecha Inicio
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Fecha Fin
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Número de Botellas
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Tiempo Trabajado
-              </th>
-            </tr>
-          </thead>
-          <tbody class="[&amp;_tr:last-child]:border-0">
+      <div class="p-4">
+        <div class="mb-4">
+          <input
+            class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+            placeholder="Buscar por número de lote, fecha, etc." />
+        </div>
+        <div class="relative w-full overflow-auto">
+          <table class="w-full caption-bottom text-sm">
+            <thead class="[&amp;_tr]:border-b">
+              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Número de Lote
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Fecha Inicio
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Fecha Fin
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Número de Botellas
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Tiempo Trabajado
+                </th>
+              </tr>
+            </thead>
+            <tbody class="[&amp;_tr:last-child]:border-0">
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-1 md:col-span-1 bg-white dark:bg-gray-950 rounded-lg shadow-lg">
+      <div class="p-4 border-b dark:border-gray-800">
+        <h2 class="text-lg font-semibold">Historial de Alarmas</h2>
+      </div>
+      <div class="p-4">
+        <div class="mb-4">
+          <input
+            class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+            placeholder="Buscar por ID, nombre, etc." />
+        </div>
+        <div class="relative w-full overflow-auto">
+          <table class="w-full caption-bottom text-sm">
+            <thead class="[&amp;_tr]:border-b">
+              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  ID Alarma
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Nombre Alarma
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Hora de Salto
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Hora de Resolución
+                </th>
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Número de Lote
+                </th>
+              </tr>
+            </thead>
+            <tbody class="[&amp;_tr:last-child]:border-0">
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-span-1 md:col-span-1 bg-white dark:bg-gray-950 rounded-lg shadow-lg">
-    <div class="p-4 border-b dark:border-gray-800">
-      <h2 class="text-lg font-semibold">Historial de Alarmas</h2>
-    </div>
-    <div class="p-4">
-      <div class="mb-4">
-        <input
-          class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
-          placeholder="Buscar por ID, nombre, etc."
-        />
-      </div>
-      <div class="relative w-full overflow-auto">
-        <table class="w-full caption-bottom text-sm">
-          <thead class="[&amp;_tr]:border-b">
-            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                ID Alarma
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Nombre Alarma
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Hora de Salto
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Hora de Resolución
-              </th>
-              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                Número de Lote
-              </th>
-            </tr>
-          </thead>
-          <tbody class="[&amp;_tr:last-child]:border-0">
-            
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+</body>
