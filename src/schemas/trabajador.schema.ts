@@ -40,10 +40,4 @@ export class Trabajador extends Model<
 
   @Attribute(DataTypes.UUID)
   declare id_Cargo: ForeignKey<Cargo['id_Cargo']>;
-
-  @Attribute(DataTypes.DATE)
-  declare createdAt: CreationOptional<Date>;
-
-  @Attribute(DataTypes.DATE)
-  declare updatedAt: CreationOptional<Date>;
 }
