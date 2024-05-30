@@ -1,121 +1,140 @@
-<div class="grid gap-4 text-sm peer:grid-cols-1">
-    <div class="bg-card text-card-foreground rounded-xl shadow-none border width-full peer:rounded-none peer:border-0 peer:shadow-xl"
-        data-v0-t="card">
-        <div class="space-y-1.5 flex flex-row items-center gap-4 p-4 peer:flex-col peer:gap-0 peer:p-0">
-            <div class="flex flex-col gap-1 peer:hidden">
-                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Workers</h3>
-                <p class="text-sm text-muted-foreground">View and manage your workforce</p>
+<body>
+    <div class="bg-white dark:bg-gray-950 rounded-lg shadow-lg w-10/12">
+        <div class="p-4 border-b dark:border-gray-800 flex justify-between items-center">
+            <h2 class="text-lg font-semibold">Administración de Trabajadores</h2>
+            <div class="flex space-x-2">
+                <button
+                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm mr-5 px-4 py-2.5 text-center">
+                    Añadir Trabajador
+                </button>
+                <button
+                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700  hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm ml-5 px-4 py-2.5 text-center">
+                    Editar Trabajador
+                </button>
             </div>
-            <button
-                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 ml-auto peer:ml-0">
-                Add Worker
-            </button>
         </div>
-        <div class="p-0">
-            <div class="overflow-auto">
-                <div class="relative w-full overflow-auto">
-                    <table class="w-full caption-bottom text-sm min-w-[600px]">
-                        <thead class="[&amp;_tr]:border-b">
-                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-10">
-                                    #
-                                </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                                    Worker
-                                </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                                    Email
-                                </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                                    Role
-                                </th>
-                                <th
-                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-20">
-                                    Status
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="[&amp;_tr:last-child]:border-0">
-                            <tr
-                                class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">1</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
-                                    John Doe
-                                </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">john@example.com</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Manager</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
-                                    Jane Smith
-                                </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">jane@example.com</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Developer</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">3</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
-                                    Mike Johnson
-                                </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">mike@example.com</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Designer</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                </td>
-                            </tr>
-                            <tr
-                                class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">4</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
-                                    Sarah Lee
-                                </td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">sarah@example.com</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Tester</td>
-                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="p-4">
+            <div class="relative w-full overflow-auto">
+                <table class="w-full text-sm">
+                    <thead class="[&amp;_tr]:border-b">
+                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <th
+                                class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Id
+                            </th>
+                            <th
+                                class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Nombre
+                            </th>
+                            <th
+                                class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Apellido
+                            </th>
+                            <th
+                                class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Email
+                            </th>
+                            <th
+                                class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Rol
+                            </th>
+                            <th
+                                class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-20">
+                                Estatus
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="[&amp;_tr:last-child]:border-0">
+                        <tr
+                            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">1</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                John
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Lopez
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">john@example.com</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Manager</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr
+                            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Jane
+                            </td>
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Lopez
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">jane@example.com</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Developer</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr
+                            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">3</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Mike
+                            </td>
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Lopez
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">mike@example.com</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Designer</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr
+                            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">4</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Sarah
+                            </td>
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">
+                                Lopez
+                            </td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">sarah@example.com</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Tester</td>
+                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
+</body>
