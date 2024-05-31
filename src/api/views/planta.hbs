@@ -201,10 +201,10 @@
     const estadosMaquinas = {
       llenadora: true,
       encorchadora: false,
-      encapsuladora: true,
+      encapsuladora: false,
       termoselladora: false,
       etiquetadora: false,
-      empaquetadora: true
+      empaquetadora: false
     };
 
     // Función para actualizar el color del estado según el valor booleano
@@ -213,12 +213,14 @@
       document.getElementById(elementoId).className = 'w-4 h-4 rounded-full ' + colorClase;
     }
 
-    // Actualizar el color de los estados de las máquinas
-    actualizarEstado('llenadora-status', estadosMaquinas.llenadora);
-    actualizarEstado('encorchadora-status', estadosMaquinas.encorchadora);
-    actualizarEstado('encapsuladora-status', estadosMaquinas.encapsuladora);
-    actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
-    actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
-    actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
+
+
+// Actualizar el color de los estados de las demás máquinas
+actualizarEstado('llenadora-status', estadosMaquinas.llenadora);
+actualizarEstado('encorchadora-status', estadosMaquinas.encorchadora);
+actualizarEstado('encapsuladora-status', estadosMaquinas.encapsuladora);
+actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
+actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
+actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
   </script>
 </body>
