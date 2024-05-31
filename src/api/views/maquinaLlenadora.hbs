@@ -148,7 +148,13 @@
             border-radius: 50%;
         }
 
-        /* Switches en sección de Parámetros - fondo verde cuando activados */
+        .botones .switch input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        .botones .switch input:checked+.slider:before {
+            transform: translateX(32px);
+        }
         .parametros .switch input:checked+.slider {
             background-color: #4CAF50;
         }
@@ -157,7 +163,6 @@
             transform: translateX(32px);
         }
 
-        /* Switches en sección de Alarmas - fondo rojo cuando activados */
         .alarmas .switch input:checked+.slider {
             background-color: #FF0000;
         }
