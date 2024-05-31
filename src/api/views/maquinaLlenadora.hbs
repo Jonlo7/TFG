@@ -331,6 +331,7 @@
                 <img src="/styles/images/llenadora.png" alt="Imagen principal" class="w-full h-auto rounded-md"
                     style="aspect-ratio: 425 / 300; object-fit: contain;" />
             </div>
+            {{#if isTecnico}}
             <div class="botones space-y-2">
                 <div class="flex justify-between">
                     <button
@@ -368,6 +369,7 @@
                         Lote</button>
                 </div>
             </div>
+            {{/if}} 
         </div>
     </div>
     <div class="space-y-4 col col-3">
@@ -376,13 +378,13 @@
                 <h3 class="text-lg font-bold">Estado de la maquina</h3>
                 <div class="flex items-center justify-center gap-4 h-full mb-4">
                     <div
-                        class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl font-bold">
+                        class="mMarcha w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl font-bold">
                         M</div>
                     <div
-                        class="w-12 h-12 rounded-full bg-yellow-500 text-white flex items-center justify-center text-2xl font-bold">
+                        class="mParo w-12 h-12 rounded-full bg-yellow-500 text-white flex items-center justify-center text-2xl font-bold">
                         P</div>
                     <div
-                        class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-2xl font-bold">
+                        class="mEmergencia w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-2xl font-bold">
                         E</div>
                 </div>
             </div>
