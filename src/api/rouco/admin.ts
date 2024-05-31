@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import { Trabajador,Cargo} from '../../schemas';
 
 const router = Router();
 
