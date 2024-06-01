@@ -8,7 +8,7 @@ import {
     sql
   } from "@sequelize/core";
 
-import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/decorators-legacy';
+import { Attribute, Table, Default, PrimaryKey, NotNull, AllowNull } from '@sequelize/core/decorators-legacy';
 import { TurnoTrabajadoTableName } from "./tableDefinition";
 import { Trabajador } from "./trabajador.schema";
 
@@ -27,7 +27,8 @@ export class TurnoTrabajado extends Model<
     declare fechaLogin: Date;
     
     @Attribute(DataTypes.DATE)
-    declare fechaLogout?: Date;
+    @AllowNull
+    declare fechaLogout: Date | null;
 
     @Attribute(DataTypes.UUID)
     declare id_Trabajador: ForeignKey<Trabajador['id_Trabajador']>;

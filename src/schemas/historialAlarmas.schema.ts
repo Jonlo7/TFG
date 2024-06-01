@@ -7,7 +7,7 @@ import {
     Model,
     sql
   } from "@sequelize/core";
-  import { Attribute, Table, Default, PrimaryKey, NotNull } from '@sequelize/core/decorators-legacy';
+  import { Attribute, Table, Default, PrimaryKey, NotNull, AllowNull } from '@sequelize/core/decorators-legacy';
   import { HistorialAlarmasTableName } from "./tableDefinition";
 import { Alarmas } from "./alarmas.schema";
 import { Lote } from "./lote.schema";
@@ -28,8 +28,8 @@ export class HistorialAlarmas extends Model<
     declare horaSalto: Date;
 
     @Attribute(DataTypes.DATE)
-    @NotNull
-    declare horaResolucion: Date;
+    @AllowNull
+    declare horaResolucion: Date | null;
 
     @Attribute(DataTypes.UUID)
     declare id_Alarma: ForeignKey<Alarmas['id_Alarma']>;;
