@@ -46,7 +46,7 @@ export class TiempoReal extends Model<
     function parseNow(tiempoReal: TiempoReal) {
       switch (tiempoReal.tipo) {
         case TipoDato.BOOLEAN:
-          return tiempoReal.valor === "true";
+          return tiempoReal.valor === "1";
         case TipoDato.INT:
           return Number(tiempoReal.valor);
         case TipoDato.REAL:
