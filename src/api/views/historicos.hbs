@@ -37,7 +37,8 @@
               </tr>
             </thead>
             <tbody class="[&amp;_tr:last-child]:border-0">
-
+             
+              
             </tbody>
           </table>
         </div>
@@ -80,7 +81,26 @@
               </tr>
             </thead>
             <tbody class="[&amp;_tr:last-child]:border-0">
-
+                <!-- historialAlarmas: [{idHistorico, horaSalto, horaResolucion}] -->
+                {{#each historialAlarmas}}
+                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    {{id_Historico}}
+                  </td>
+                  <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    {{id_Alarma}}
+                  </td>
+                  <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    {{horaSalto}}
+                  </td>
+                  <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    {{horaResolucion}}
+                  </td>
+                  <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    {{id_Lote}}
+                  </td>
+                </tr>
+                {{/each}}
             </tbody>
           </table>
         </div>
