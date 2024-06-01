@@ -13,13 +13,17 @@ router.get(
 );
 
 router.get(
-    "/tiempo-real",
+    "/estado-llenadora",
     async (_req: Request, res: Response, next: NextFunction) => {
         try {
-            const todasTiempoReal = await TiempoReal.findAll();
-            res.json({
-                todasTiempoReal
-            });
+            const llenadora = await TiempoReal.findOne({ where: { clave: 'mMarcha' } });
+            if (llenadora) {
+                res.json({
+                    valor: llenadora.valorParseado
+                });
+            } else {
+                res.status(404).json({ message: 'No se encontró la clave mMarcha' });
+            }
         } catch (error) {
             next(error);
         }

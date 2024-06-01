@@ -199,7 +199,7 @@
   <script>
     // Estados de las máquinas
     const estadosMaquinas = {
-      llenadora: true,
+      llenadora: false,
       encorchadora: false,
       encapsuladora: false,
       termoselladora: false,
@@ -213,14 +213,25 @@
       document.getElementById(elementoId).className = 'w-4 h-4 rounded-full ' + colorClase;
     }
 
+    //Funcion para obtener el estado de la maquina llenadora desde bbdd
+   async function obtenerEstadoLlenadora() {
+      try {
+        const response = await fetch('/estado-llenadora');
+        const data = await response.json();
+        estadosMaquinas.llenadora = data.valor;
+        actualizarEstado('llenadora-status', estadosMaquinas.llenadora);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    //llamar a obtener estado cada 500 ms
+    setInterval(obtenerEstadoLlenadora, 500);
 
-
-// Actualizar el color de los estados de las demás máquinas
-actualizarEstado('llenadora-status', estadosMaquinas.llenadora);
-actualizarEstado('encorchadora-status', estadosMaquinas.encorchadora);
-actualizarEstado('encapsuladora-status', estadosMaquinas.encapsuladora);
-actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
-actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
-actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
+    // Actualizar el color de los estados de las demás máquinas
+    actualizarEstado('encorchadora-status', estadosMaquinas.encorchadora);
+    actualizarEstado('encapsuladora-status', estadosMaquinas.encapsuladora);
+    actualizarEstado('termoselladora-status', estadosMaquinas.termoselladora);
+    actualizarEstado('etiquetadora-status', estadosMaquinas.etiquetadora);
+    actualizarEstado('empaquetadora-status', estadosMaquinas.empaquetadora);
   </script>
 </body>
