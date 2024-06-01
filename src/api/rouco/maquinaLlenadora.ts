@@ -28,4 +28,50 @@ router.get(
     },
 );
 
+
+router.post(
+    "/botones",
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { bWEBMarcha, bWEBAspiradora, bWEBCinta } = req.body;
+
+            // create or update
+            if (bWEBMarcha) {
+                await Botones.upsert({
+                    id_Boton: 'bWEBMarcha',
+                    valor: bWEBMarcha
+                });
+
+                setTimeout(() => {
+                    Botones.upsert({
+                        id_Boton: 'bWEBMarcha',
+                        valor: false
+                    });
+                }, 1000);
+            }
+            
+
+            if (bWEBAspiradora) {
+                await Botones.upsert({
+                    id_Boton: 'bWEBAspiradora',
+                    valor: bWEBAspiradora
+                });
+            }
+
+            if (bWEBCinta) {
+                await Botones.upsert({
+                    id_Boton: 'bWEBCinta',
+                    valor: bWEBCinta
+                });
+            }
+
+            //...
+
+
+            res.json({ message: 'Botones actualizados' });
+        } catch (error) {
+            next(error);
+        }
+    },
+);
 export default router;
