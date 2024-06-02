@@ -1,4 +1,5 @@
 <head>
+
     <style>
         .parametros,
         .lote,
@@ -8,7 +9,7 @@
         .alarmas {
             background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
             padding: 0.5rem;
             display: flex;
             flex-direction: column;
@@ -43,6 +44,13 @@
             }
         }
 
+        .parametros-lote {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 1.5rem;
+        }
+
         .maquina-botones {
             display: flex;
             flex-direction: column;
@@ -51,18 +59,18 @@
         }
 
         .maquina {
-            flex: 0 1 65%;
+            flex: 0 1 55%;
         }
 
         .botones {
-            flex: 0 1 35%;
+            flex: 0 1 45%;
         }
 
         .estado-alarmas {
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            gap: 1.5rem;
+            gap: 0.5rem;
         }
 
         .estado {
@@ -80,9 +88,9 @@
         }
 
         .botones {
-            flex: 0 1 40%;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
             gap: 0.5rem;
         }
 
@@ -90,109 +98,68 @@
         .botones .salidas-buttons,
         .botones .action-buttons {
             display: flex;
-            justify-content: space-between;
-        }
-
-        .botones .activacion-buttons button,
-        .botones .salidas-buttons button,
-        .botones .action-buttons button {
-            width: 32%;
-        }
-
-        .botones .switch-container {
-            display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 5px;
-            margin: 5px 0;
         }
 
-        .botones .switch-container label {
-            font-weight: bold;
-        }
-
-        .botones .switch {
+        .switch {
             position: relative;
             display: inline-block;
             width: 60px;
-            height: 28px;
+            height: 34px;
         }
 
-        .botones .switch input {
+        .switch input {
             opacity: 0;
-            width: 0;
-            height: 0;
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            z-index: 20;
         }
 
-        .botones .slider {
+        .slider {
             position: absolute;
-            cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             background-color: #ccc;
             transition: .4s;
-            border-radius: 23px;
+            border-radius: 34px;
         }
 
-        .par .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 23px;
+        .botones input:checked+.block {
+            background-color: #2767f3;
         }
 
-
-        .botones .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+        .botones input:checked+.block .dot {
+            transform: translateX(24px);
         }
 
-        .botones .switch input:checked+.slider {
-            background-color: #2196F3;
-        }
-
-        .botones .switch input:checked+.slider:before {
-            transform: translateX(32px);
-        }
-        .parametros .switch input:checked+.slider {
-            background-color: #4CAF50;
-        }
-
-        .parametros .switch input:checked+.slider:before {
-            transform: translateX(32px);
-        }
-
-        .alarmas .switch input:checked+.slider {
+        .alarmas input:checked+.block {
             background-color: #FF0000;
         }
 
-        .alarmas .switch input:checked+.slider:before {
-            transform: translateX(32px);
+        .alarmas input:checked+.block .dot {
+            transform: translateX(24px);
         }
 
-        .relative input:checked+.block {
+        .parametros input:checked+.block {
             background-color: #4CAF50;
         }
 
-        .relative input:checked+.block .dot {
-            transform: translateX(6px);
+        .parametros input:checked+.block .dot {
+            transform: translateX(24px);
         }
 
-        .dot {
+        .botones .dot {
+            transition: transform 0.3s ease;
+        }
+
+        .parametros .dot {
+            transition: transform 0.3s ease;
+        }
+
+        .alarmas .dot {
             transition: transform 0.3s ease;
         }
 
@@ -207,133 +174,149 @@
 </head>
 
 <body>
+    {{> csrftokeninput }}
     <div class="space-y-4 col col-1">
-        <div class="parametros">
-            <h3 class="text-lg font-bold">Parametros</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="nivel-tanque" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nivel
-                        del Tanque</label>
-                    <input id="nivel-tanque"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="caudalimetro"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Caudalimetro</label>
-                    <input id="caudalimetro"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="aspirador"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Aspirador</label>
-                    <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                        <input type="checkbox" id="aspirador" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+        <div class="parametros-lote">
+            <div class="parametros">
+                <h3 class="text-lg font-bold">Parametros</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="nivel-tanque"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nivel
+                            del Tanque</label>
+                        <input id="nivel-tanque"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="number" disabled />
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950 botones">
-                    <label for="cinta" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Cinta</label>
-                    
-                    <label class="switch">
-                        <input type="checkbox" id="cinta" disabled />
-                        <span class="slider"></span>
-                    </label>
-        
-              
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="motor" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Motor</label>
-                    <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                        <input type="checkbox" id="motor" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="caudalimetro"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Caudalimetro</label>
+                        <input id="caudalimetro"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="number" disabled />
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="valvula"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Valvula</label>
-                    <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                        <input type="checkbox" id="valvula" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="aspirador"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Aspirador</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="aspirador" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="sensor-nivel-alto"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Alto</label>
-                    <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                        <input type="checkbox" id="sensor-nivel-alto" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="cinta"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Cinta</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="cinta" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="sensor-nivel-bajo"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Bajo</label>
-                    <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                        <input type="checkbox" id="sensor-nivel-bajo" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="motor"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Motor</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="motor" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="sensor-giro" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor
-                        Giro</label>
-                    <div
-                        class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                        <input type="checkbox" id="sensor-giro" class="sr-only" disabled />
-                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="valvula"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Valvula</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="valvula" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="sensor-nivel-alto"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Alto</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="sensor-nivel-alto" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="sensor-nivel-bajo"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor Nivel Bajo</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="sensor-nivel-bajo" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="sensor-giro"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor
+                            Giro</label>
+                        <div
+                            class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
+                            <input type="checkbox" id="sensor-giro" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lote">
-            <h3 class="text-lg font-bold">Lote</h3>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="numero-lote" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Numero
-                        del lote</label>
-                    <input id="numero-lote"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="fechaInicio-lote"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha inicio</label>
-                    <input id="fechaInicio-lote"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="fechaFin-lote" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha
-                        cierre</label>
-                    <input id="fechaFin-lote"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="numeroBotellas-lote"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-400">Numero de
-                        botellas</label>
-                    <input id="numeroBotellas-lote"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
-                </div>
-                <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
-                    <label for="tiempo-lote" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Tiempo
-                        de produccion</label>
-                    <input id="tiempo-lote"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                        type="number" disabled />
+            <div class="lote">
+                <h3 class="text-lg font-bold">Lote</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="numero-lote"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Numero
+                            del lote</label>
+                        <input id="numero-lote"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="number" disabled />
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="fechaInicio-lote"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha inicio</label>
+                        <input id="fechaInicio-lote"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="datetime" disabled />
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="fechaFin-lote"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha
+                            cierre</label>
+                        <input id="fechaFin-lote"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="datetime" disabled />
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="numeroBotellas-lote"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Numero de
+                            botellas</label>
+                        <input id="numeroBotellas-lote"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="number" disabled />
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md dark:bg-gray-950">
+                        <label for="tiempo-lote"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">Tiempo
+                            de produccion</label>
+                        <input id="tiempo-lote"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                            type="number" disabled />
+                    </div>
                 </div>
             </div>
         </div>
@@ -343,47 +326,59 @@
             <div class="maquina">
                 <h3 class="text-lg font-bold">Maquina Llenadora</h3>
                 <img src="/styles/images/llenadora.png" alt="Imagen principal" class="w-full h-auto rounded-md"
-                    style="aspect-ratio: 425 / 300; object-fit: contain;" />
+                    style="aspect-ratio: 425 / 250; object-fit: contain;" />
             </div>
             {{#if isTecnico}}
             <div class="botones space-y-2">
                 <div class="flex justify-between">
-                    <button onclick="activarMaquina()"
+                    <button onclick="bWEBMarcha()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-4/12 me-2 mb-2">Marcha</button>
-                    <button
+                    <button onclick="bWEBParo()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-4/12 me-2 mb-2">Paro</button>
-                    <button
+                    <button onclick="bWEBEmergencia()"
                         class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-4/12 me-2 mb-2">Emergencia</button>
                 </div>
                 <div class="flex justify-center items-center space-x-2">
                     <label for="mode-switch">Automático</label>
-                    <label class="switch">
-                        <input type="checkbox" id="mode-switch">
-                        <span class="slider"></span>
-                    </label>
+                    <div class="relative inline-block w-14 h-8 align-middle transition duration-200 ease-in switch">
+                        <input type="checkbox" id="mode-switch" onclick="bWEBModoAuto()" />
+                        <div class="block bg-gray-300 w-14 h-8 rounded-full slider z-10">
+                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                        </div>
+                    </div>
                     <label for="mode-switch">Manual</label>
                 </div>
                 <div class="flex justify-between">
-                    <button
+                    <button onclick="bWEBCinta()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Cinta</button>
-                    <button
+                    <button onclick="bWEBAspiradora()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Aspiradora</button>
-                    <button
+                    <button onclick="bWEBMotorLlenadora()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Motor
                         Giro</button>
-                    <button
+                    <button onclick="bWEBValvula()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-2/12 me-2 mb-2">Valvula</button>
                 </div>
                 <div class="flex justify-between">
-                    <button
+                    <button onclick="bWEBCrearLote()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-5/12 me-2 mb-2 ml-10">Crear
                         Lote</button>
-                    <button
+                    <button onclick="bWEBTerminarLote()"
                         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-5/12 me-2 mb-2 mr-10">Terminar
                         Lote</button>
                 </div>
+                <div class="flex justify-between ">
+                    <button onclick="bWEBResetCounterEntrada()"
+                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-5/12 me-2 mb-2 ml-10">Resetear
+                        Contador Entrada
+                    </button>
+                    <button onclick="bWEBResetCounterSalida()"
+                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-1 py-2.5 text-center w-5/12 me-2 mb-2 mr-10">Resetear
+                        Contador Salida
+                    </button>
+                </div>
             </div>
-            {{/if}} 
+            {{/if}}
         </div>
     </div>
     <div class="space-y-4 col col-3">
@@ -392,13 +387,13 @@
                 <h3 class="text-lg font-bold">Estado de la maquina</h3>
                 <div class="flex items-center justify-center gap-4 h-full mb-4">
                     <div
-                        class="mMarcha w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl font-bold">
+                        class="mMarcha w-12 h-12 rounded-full bg-gray-300 text-white flex items-center justify-center text-2xl font-bold">
                         M</div>
                     <div
-                        class="mParo w-12 h-12 rounded-full bg-yellow-500 text-white flex items-center justify-center text-2xl font-bold">
+                        class="mParo w-12 h-12 rounded-full bg-gray-300 text-white flex items-center justify-center text-2xl font-bold">
                         P</div>
                     <div
-                        class="mEmergencia w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-2xl font-bold">
+                        class="mEmergencia w-12 h-12 rounded-full bg-gray-300 text-white flex items-center justify-center text-2xl font-bold">
                         E</div>
                 </div>
             </div>
@@ -412,8 +407,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="paro-inactividad" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -423,8 +419,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="seta-emergencia" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -434,8 +431,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="llenado-botellas" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -444,8 +442,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="nivel-tanque-alto" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider" /div>
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -454,8 +453,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="nivel-tanque-bajo" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -465,8 +465,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="no-entra-caudal" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -476,8 +477,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="sigue-entrando-caudal" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -487,8 +489,9 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="fallo-motor" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
@@ -498,28 +501,31 @@
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
                             <input type="checkbox" id="fallo-sensores" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
-                        <label for="sensor-nivel-alto"
+                        <label for="sensor-nivelAlto"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor nivel alto</label>
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                            <input type="checkbox" id="sensor-nivel-alto" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <input type="checkbox" id="sensor-nivelAlto" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-950">
-                        <label for="sensor-nivel-bajo"
+                        <label for="sensor-nivelBajo"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-400">Sensor nivel bajo</label>
                         <div
                             class="relative inline-block w-14 h-8 align-middle select-none transition duration-200 ease-in switch">
-                            <input type="checkbox" id="sensor-nivel-bajo" class="sr-only" disabled />
-                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            <input type="checkbox" id="sensor-nivelBajo" class="sr-only" disabled />
+                            <div class="block bg-gray-300 w-14 h-8 rounded-full slider">
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -529,422 +535,208 @@
 </body>
 
 <script>
-   async function obtenerEstadoLlenadora() {
-      try {
-        /*
-        {
-    "todasTiempoReal": [
-        {
-            "clave": "Alarma0",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma1",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma10",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma11",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma12",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma2",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma3",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma4",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma5",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma6",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma7",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma8",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "Alarma9",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "botellasLote",
-            "valor": "32",
-            "tipo": "INT",
-            "valorParseado": 32
-        },
-        {
-            "clave": "caudalimetro",
-            "valor": "35",
-            "tipo": "INT",
-            "valorParseado": 35
-        },
-        {
-            "clave": "contEntrada",
-            "valor": "283",
-            "tipo": "INT",
-            "valorParseado": 283
-        },
-        {
-            "clave": "contSalida",
-            "valor": "259",
-            "tipo": "INT",
-            "valorParseado": 259
-        },
-        {
-            "clave": "entrada",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "fechaFinLote",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "fechaInicioLote",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "giro",
-            "valor": "1",
-            "tipo": "BOOLEAN",
-            "valorParseado": true
-        },
-        {
-            "clave": "idLote",
-            "valor": "12",
-            "tipo": "INT",
-            "valorParseado": 12
-        },
-        {
-            "clave": "mEmergencia",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "mMarcha",
-            "valor": "1",
-            "tipo": "BOOLEAN",
-            "valorParseado": true
-        },
-        {
-            "clave": "mParo",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "nivelAlto",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "nivelBajo",
-            "valor": "1",
-            "tipo": "BOOLEAN",
-            "valorParseado": true
-        },
-        {
-            "clave": "nivelBotella",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "nivelTanque",
-            "valor": "7643",
-            "tipo": "INT",
-            "valorParseado": 7643
-        },
-        {
-            "clave": "resetAlarma0",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma1",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma10",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma11",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma12",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma2",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma3",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma4",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma5",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma6",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma7",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma8",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "resetAlarma9",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "salida",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "sAspiradora",
-            "valor": "1",
-            "tipo": "BOOLEAN",
-            "valorParseado": true
-        },
-        {
-            "clave": "sCinta",
-            "valor": "1",
-            "tipo": "BOOLEAN",
-            "valorParseado": true
-        },
-        {
-            "clave": "setAlarma0",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma1",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma10",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma11",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma12",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma2",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma3",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma4",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma5",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma6",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma7",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma8",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "setAlarma9",
-            "valor": "2024-05-29 23:13:26",
-            "tipo": "DATE",
-            "valorParseado": "2024-05-29T21:13:26.000Z"
-        },
-        {
-            "clave": "sValvula",
-            "valor": "0",
-            "tipo": "BOOLEAN",
-            "valorParseado": false
-        },
-        {
-            "clave": "tiempoTrabajo",
-            "valor": "140567",
-            "tipo": "INT",
-            "valorParseado": 140567
-        }
-    ]
-}*/
-        const response = await fetch('/tiempo-real');
-        const data = await response.json();
-        document.getElementById('nivel-tanque').value = data.todasTiempoReal.find(c => c.clave === 'nivelTanque').valorParseado;
-        document.getElementById('caudalimetro').value = data.todasTiempoReal.find(c => c.clave === 'caudalimetro').valorParseado;
-        document.getElementById('aspirador').checked = data.todasTiempoReal.find(c => c.clave === 'sAspiradora').valorParseado;
-        document.getElementById('cinta').checked = data.todasTiempoReal.find(c => c.clave === 'sCinta').valorParseado;
-        document.getElementById('motor').checked = data.todasTiempoReal.find(c => c.clave === 'sMotorLlenadora').valorParseado;
-        document.getElementById('valvula').checked = data.todasTiempoReal.find(c => c.clave === 'sValvula').valorParseado;
-        document.getElementById('sensor-nivel-alto').checked = data.todasTiempoReal.find(c => c.clave === 'nivelAlto').valorParseado;
-        document.getElementById('sensor-nivel-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'nivelBajo').valorParseado;
-        document.getElementById('sensor-giro').checked = data.todasTiempoReal.find(c => c.clave === 'giro').valorParseado;
-        document.getElementById('numero-lote').value = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
-        document.getElementById('fechaInicio-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
-        document.getElementById('fechaFin-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
-        document.getElementById('numeroBotellas-lote').value = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
-        document.getElementById('tiempo-lote').value = data.todasTiempoReal.find(c => c.clave === 'tiempoTrabajo').valorParseado;
-        document.getElementById('mMarcha').style.backgroundColor = data.todasTiempoReal.find(c => c.clave === 'mMarcha').valorParseado ? 'green' : 'gray';
-        document.getElementById('mParo').style.backgroundColor = data.todasTiempoReal.find(c => c.clave === 'mParo').valorParseado ? 'yellow' : 'gray';
-        document.getElementById('mEmergencia').style.backgroundColor = data.todasTiempoReal.find(c => c.clave === 'mEmergencia').valorParseado ? 'red' : 'gray';
-        document.getElementById('paro-inactividad').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
-        document.getElementById('seta-emergencia').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
-        document.getElementById('llenado-botellas').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
-        document.getElementById('nivel-tanque-alto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
-        document.getElementById('nivel-tanque-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
-        document.getElementById('no-entra-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
-        document.getElementById('sigue-entrando-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
-        document.getElementById('fallo-motor').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
-        document.getElementById('fallo-sensores').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
-        document.getElementById('sensor-nivel-alto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
-        document.getElementById('sensor-nivel-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
-        document.getElementById('sensor-giro').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma11').valorParseado;
-        
+    async function obtenerEstadoLlenadora() {
+        try {
+            const response = await fetch('/tiempo-real');
+            const data = await response.json();
+            document.getElementById('nivel-tanque').value = data.todasTiempoReal.find(c => c.clave === 'nivelTanque').valorParseado;
+            document.getElementById('caudalimetro').value = data.todasTiempoReal.find(c => c.clave === 'caudalimetro').valorParseado;
+            document.getElementById('aspirador').checked = data.todasTiempoReal.find(c => c.clave === 'sAspiradora').valorParseado;
+            document.getElementById('cinta').checked = data.todasTiempoReal.find(c => c.clave === 'sCinta').valorParseado;
+            document.getElementById('motor').checked = data.todasTiempoReal.find(c => c.clave === 'sMotorLlenadora').valorParseado;
+            document.getElementById('valvula').checked = data.todasTiempoReal.find(c => c.clave === 'sValvula').valorParseado;
+            document.getElementById('sensor-nivel-alto').checked = data.todasTiempoReal.find(c => c.clave === 'nivelAlto').valorParseado;
+            document.getElementById('sensor-nivel-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'nivelBajo').valorParseado;
+            document.getElementById('sensor-giro').checked = data.todasTiempoReal.find(c => c.clave === 'giro').valorParseado;
+            document.getElementById('numero-lote').value = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+            document.getElementById('fechaInicio-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
+            document.getElementById('fechaFin-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
+            document.getElementById('numeroBotellas-lote').value = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
+            document.getElementById('tiempo-lote').value = data.todasTiempoReal.find(c => c.clave === 'tiempoTrabajo').valorParseado;
+            let mMarcha = data.todasTiempoReal.find(c => c.clave === 'mMarcha').valorParseado;
+            if (mMarcha) {
+                document.querySelector('.mMarcha').style.backgroundColor = '#4CAF50';
+            } else {
+                document.querySelector('.mMarcha').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
+            }
+            let mParo = data.todasTiempoReal.find(c => c.clave === 'mParo').valorParseado;
+            if (mParo) {
+                document.querySelector('.mParo').style.backgroundColor = 'rgba(234, 179, 8, var(--tw-bg-opacity))';
+            } else {
+                document.querySelector('.mParo').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
+            }
+            let mEmergencia = data.todasTiempoReal.find(c => c.clave === 'mEmergencia').valorParseado;
+            if (mEmergencia) {
+                document.querySelector('.mEmergencia').style.backgroundColor = 'rgba(239, 68, 68, var(--tw-bg-opacity))';
+            } else {
+                document.querySelector('.mEmergencia').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
+            }
+            document.getElementById('paro-inactividad').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
+            document.getElementById('seta-emergencia').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
+            document.getElementById('llenado-botellas').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
+            document.getElementById('nivel-tanque-alto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
+            document.getElementById('nivel-tanque-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
+            document.getElementById('no-entra-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
+            document.getElementById('sigue-entrando-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
+            document.getElementById('fallo-motor').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
+            document.getElementById('fallo-sensores').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
+            document.getElementById('sensor-nivelAlto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
+            document.getElementById('sensor-nivelBajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
 
-      } catch (error) {
-        console.error('Error:', error);
-      }
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 
-    setInterval(obtenerEstadoLlenadora, 1500);
+    setInterval(obtenerEstadoLlenadora, 1000);
 
-    async function activarMaquina() {
+    async function bWEBMarcha() {
         fetch('/botones', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
             },
             body: JSON.stringify({
                 bWEBMarcha: true,
             }),
-        })
+        });
     }
+    //funciones para los demas botones
+    async function bWEBParo() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBParo: true,
+            }),
+        });
+    }
+    async function bWEBEmergencia() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBEmergencia: true,
+            }),
+        });
+    }
+    async function bWEBModoAuto() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
+            }),
+        });
+    }
+    async function bWEBAspiradora() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBAspiradora: true,
+            }),
+        });
+    }
+    async function bWEBCinta() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBCinta: true,
+            }),
+        });
+    }
+    async function bWEBMotorLlenadora() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBMotorLlenadora: true,
+            }),
+        });
+    }
+    async function bWEBValvula() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBValvula: true,
+            }),
+        });
+    }
+    async function bWEBCrearLote() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBCrearLote: true,
+            }),
+        });
+    }
+    async function bWEBTerminarLote() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBTerminarLote: true,
+            }),
+        });
+    }
+    async function bWEBResetCounterEntrada() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBResetCounterEntrada: true,
+            }),
+        });
+    }
+    async function bWEBResetCounterSalida() {
+        fetch('/botones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+                bWEBResetCounterSalida: true,
+            }),
+        });
+    }
+
+
+
 </script>
