@@ -19,6 +19,10 @@ export class Alarmas extends Model<
     @PrimaryKey
     @NotNull
     declare id_Alarma: CreationOptional<string>;
+
+    @Attribute(DataTypes.STRING)
+    @NotNull
+    declare denom: string;
     
     @Attribute(DataTypes.STRING)
     @NotNull
