@@ -7,11 +7,13 @@
       <div class="p-4">
         <div class="mb-4">
           <input
+            type="text"
+            id="searchLote"
             class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             placeholder="Buscar por número de lote, fecha, etc." />
         </div>
         <div class="relative w-full overflow-auto">
-          <table class="w-full caption-bottom text-sm">
+          <table id="tablaLote" class="w-full caption-bottom text-sm">
             <thead class="[&amp;_tr]:border-b">
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                 <th
@@ -37,8 +39,25 @@
               </tr>
             </thead>
             <tbody class="[&amp;_tr:last-child]:border-0">
-             
-              
+             {{#each historialLotes}}
+              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                  {{id_Lote}}
+                </td>
+                <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                  {{horaInicio}}
+                </td>
+                <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                  {{horaFin}}
+                </td>
+                <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                  {{botellasCorrectas}}
+                </td>
+                <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                  {{tiempoTrabajo}}
+                </td>
+              </tr>
+             {{/each}}
             </tbody>
           </table>
         </div>
@@ -51,11 +70,13 @@
       <div class="p-4">
         <div class="mb-4">
           <input
+            type="text"
+            id="searchAlarma"
             class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
             placeholder="Buscar por ID, nombre, etc." />
         </div>
         <div class="relative w-full overflow-auto">
-          <table class="w-full caption-bottom text-sm">
+          <table id="tablaAlarma" class=" w-full caption-bottom text-sm">
             <thead class="[&amp;_tr]:border-b">
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                 <th
@@ -81,7 +102,6 @@
               </tr>
             </thead>
             <tbody class="[&amp;_tr:last-child]:border-0">
-                <!-- historialAlarmas: [{idHistorico, horaSalto, horaResolucion}] -->
                 {{#each historialAlarmas}}
                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                   <td class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
@@ -108,3 +128,21 @@
     </div>
   </div>
 </body>
+<script>
+['Lote', 'Alarma'].forEach(function(i) {
+  document.getElementById('search' + i).addEventListener('keyup', function() {
+    let searchValue = isNaN(this.value) ? this.value.toLowerCase() : this.value;
+    let tableRows = document.querySelectorAll('#tabla' + i + ' tbody tr');
+
+    tableRows.forEach(function(row) {
+      let rowText = row.textContent.toLowerCase();
+      if (rowText.indexOf(searchValue) !== -1) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+});
+
+</script>
