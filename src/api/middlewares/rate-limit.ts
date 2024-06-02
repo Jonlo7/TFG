@@ -5,7 +5,7 @@ import { APIError } from '../error/APIError';
 
 export const rateLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 1000,
+    max: 2000,
     handler: (_req: Request, _res: Response, next: NextFunction) => {
         return next(new APIError("Too many requests", true));
     },
