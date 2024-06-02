@@ -83,8 +83,8 @@ router.get(
     requireAuth,
     async (req: Request, res: Response, _next: NextFunction) => {
         await TurnoTrabajado.update({fechaLogout: new Date()}, {where: {id_Trabajador: req.session.trabajador!.id_Trabajador, fechaLogout: {
-            // if loggedout 10 munutes ago
-            [Op.lt]: new Date(new Date().getTime() - 10 * 60 * 1000)
+            //if loggedout 5 minutes ago
+            [Op.lt]: new Date(new Date().getTime() - 5 * 60 * 1000)
         }}});
         req.session.destroy(() => {
             res.redirect("/login");
@@ -98,20 +98,16 @@ setInterval(async() => {
     }}});
 }, 10 * 60 * 1000)
 
-setInterval(async() => {
-    // buscar el valor de la alarma 0
-    // buscar el valor de los historicos de la alarma 0, si el valor de la alarma es 1 y no existia un historico, crear historico
-    // si el valor de la alarma es 0 y existia un historico, actualizar historico con resolucion now
-    const valorTiempoReal = (await TiempoReal.findOne({ where: { clave: 'alarma0' } }))?.valorParseado;
-    // get last record from Lote
-    const id_Lote = (await Lote.findOne({order: [['createdAt', 'DESC']]}))?.id_Lote;
-    const id_Alarma = (await Alarmas.findOne({where: {nombre: 'Nivel tanque alto'}}))?.id_Alarma
-    if (id_Lote && id_Alarma && valorTiempoReal === 1) {
-        const historico = await HistorialAlarmas.create({id_Alarma, horaSalto: new Date(), id_Lote, horaResolucion: null});
-    } else if (id_Lote && id_Alarma && valorTiempoReal === 0) {
-        await HistorialAlarmas.update({horaResolucion: new Date()}, {where: {id_Lote, id_Alarma, horaResolucion: null}});
-    }
-}, 1000)
+//setInterval(async() => {
+    //const valorTiempoReal = (await TiempoReal.findOne({ where: { clave: 'alarma0' } }))?.valorParseado;
+    //const id_Lote = (await Lote.findOne({order: [['createdAt', 'DESC']]}))?.id_Lote;
+    //const id_Alarma = (await Alarmas.findOne({where: {nombre: 'Nivel tanque alto'}}))?.id_Alarma
+    //if (id_Lote && id_Alarma && valorTiempoReal === 1) {
+    //    const historico = await HistorialAlarmas.create({id_Alarma, horaSalto: new Date(), id_Lote, horaResolucion: null});
+    //} else if (id_Lote && id_Alarma && valorTiempoReal === 0) {
+    //    await HistorialAlarmas.update({horaResolucion: new Date()}, {where: {id_Lote, id_Alarma, horaResolucion: null}});
+    //}
+//}, 1000)
 
 
 export default router;
