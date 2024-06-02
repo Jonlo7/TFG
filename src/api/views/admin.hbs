@@ -1,22 +1,29 @@
 <head>
   <style>
-
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      height: 86vh;
+    }
   </style>
 </head>
 
 <body>
-  <div class="flex flex-col items-center justify-center w-full">
+  <div class="container">
+    {{> csrftokeninput }}
     <div class="bg-white dark:bg-gray-950 rounded-lg shadow-lg w-10/12">
       <div class="p-4 border-b dark:border-gray-800 flex justify-between items-center">
         <h2 class="text-lg font-semibold">Administración de Trabajadores</h2>
         <div class="flex space-x-2 mr-12">
-          <button
+          <button id="addTrabajador"
             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm mr-5 px-4 py-2.5 text-center">
             Añadir Trabajador
           </button>
-          <button
+          <button id="deleteTrabajador"
             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm ml-5 px-4 py-2.5 text-center">
-            Editar Trabajador
+            Borrar Trabajador
           </button>
         </div>
       </div>
@@ -30,96 +37,187 @@
           <table class="w-11/12 text-sm">
             <thead class="[&amp;_tr]:border-b">
               <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                   ID Trabajador
                 </th>
-                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                   Nombre
                 </th>
-                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                   Apellido
                 </th>
-                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                   Email
                 </th>
-                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                <th
+                  class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                   Rol
-                </th>
-                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 20px">
-                  Estatus
                 </th>
               </tr>
             </thead>
             <tbody class="[&amp;_tr:last-child]:border-0">
-              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">1</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">John</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Lopez</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">john@example.com</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Administrador</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </td>
+              {{#each trabajadores}}
+              <tr
+                class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{id_Trabajador}}</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">{{nombre}}</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">{{apellido}}</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{email}}</td>
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{id_Cargo}}</td>
               </tr>
-              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">2</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Jane</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Lopez</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">jane@example.com</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Oficina</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </td>
-              </tr>
-              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">3</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Mike</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Lopez</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">mike@example.com</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Oficina</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </td>
-              </tr>
-              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">4</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Sarah</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Lopez</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">sarah@example.com</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Tecnico</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </td>
-              </tr>
-              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted peer-hover:translate-y-0.5 translate-x-0.5 transition-color">
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">5</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Clau</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">Ariz</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">clau@clau.com</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Tecnico</td>
-                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-green-500 peer:mr-0.5 dark:text-green-400">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </td>
-              </tr>
+              {{/each}}
             </tbody>
           </table>
         </div>
       </div>
     </div>
+    <div class="bg-white dark:bg-gray-950 rounded-lg shadow-lg w-8/12">
+      <div id="modalAdd" class="hidden">
+        <div class="modal-content">
+          <div class="p-4 border-b dark:border-gray-800 flex justify-between items-center">
+            <h2 class="text-lg font-semibold">Añadir Trabajador</h2>
+          </div>
+          <div class="pt-4 pr-10 pl-10 space-y-4">
+            <form class="addWorker-form">
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="name">Nombre</label>
+                <input
+                  class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="text" id="name" name="name" placeholder="Jon" required>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="surname">Apellido</label>
+                <input
+                  class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="text" id="surname" name="surname" placeholder="Lopez" required>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="email">Email</label>
+                <input
+                  class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="email" id="email" name="email" placeholder="jon@jon.com" required>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="password">Contraseña</label>
+                <input
+                  class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="password" id="password" name="password" placeholder="Introduzca una contraseña" required>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for="role">Cargo</label>
+                <select
+                  class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  id="role" name="role">
+                  {{#each cargos}}
+                  <option value="{{id_Cargo}}">{{nombre}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="pt-4 pb-4 flex justify-center">
+                <button
+                  class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
+                  type="submit" id="add-buttonAdd">Añadir</button>
+                <button
+                  class="ml-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
+                  type="button" id="cancel-buttonAdd">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="modalDelete" class="hidden">
+        <div class="modal-content">
+          <h2 class="text-lg font-semibold">Eliminar Trabajador</h2>
+          <select id="worker-select">
+            <!-- Aquí irán las opciones de los trabajadores -->
+          </select>
+          <button id="delete-button">Eliminar</button>
+          <button id="cancel-buttonDelete">Cancelar</button>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
+<script>
+  document.getElementById("addTrabajador").addEventListener("click", function () {
+    document.getElementById('modalAdd').classList.remove('hidden');
+    document.getElementById('modalDelete').classList.add('hidden');
+  });
+
+  document.getElementById("deleteTrabajador").addEventListener("click", function () {
+    document.getElementById('modalDelete').classList.remove('hidden');
+    document.getElementById('modalAdd').classList.add('hidden');
+  });
+
+
+var modalAdd = document.getElementById('modalAdd');
+var modalDelete = document.getElementById('modalDelete');
+var cancelButtonAdd = document.getElementById('cancel-buttonAdd');
+var cancelButtonDelete = document.getElementById('cancel-buttonDelete');
+
+cancelButtonAdd.onclick = function() {
+  modalAdd.classList.add('hidden');
+}
+
+cancelButtonDelete.onclick = function() {
+  modalDelete.classList.add('hidden');
+}
+
+  document.getElementById("addWorker-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    // Recoge los valores de los campos del formulario
+    const nombre = document.getElementById("name").value;
+    const apellido = document.getElementById("surname").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    // Guarda los valores en un objeto
+    const trabajador = {
+      nombre: nombre,
+      apellido: apellido,
+      email: email,
+      password: password,
+      id_Cargo: role
+    };
+    fetch("/add-trabajador", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+      },
+      body: JSON.stringify(trabajador) // Convierte el objeto `trabajador` a una cadena JSON
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Trabajador añadido con éxito");
+        } else {
+          alert("Hubo un error al añadir el trabajador");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  });
+
+  document.getElementById('delete-button').addEventListener('click', function () {
+    if (confirm('¿Estás seguro de que quieres eliminar este trabajador?')) {
+      // Aquí puedes eliminar el trabajador de la base de datos
+    }
+  });
+</script>
