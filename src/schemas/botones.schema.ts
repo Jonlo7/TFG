@@ -14,8 +14,7 @@ export class Botones extends Model<
   InferAttributes<Botones>,
   InferCreationAttributes<Botones>
 > {
-    @Attribute(DataTypes.UUID)
-    @Default(sql.uuidV4)
+    @Attribute(DataTypes.STRING)
     @PrimaryKey
     @NotNull
     declare id_Boton: CreationOptional<string>;
