@@ -1,9 +1,6 @@
 import { startServer } from "./api";
 import Logger from "./lib/logger";
 import { launch, unlaunch } from "./launch";
-import { Cargo, TiempoReal, Trabajador, Lote, Alarmas } from "./schemas";
-import { hashPassword } from "./lib/crypto";
-import { TipoDato } from "./schemas/tiempoReal.schema";
 
 const logger = Logger();
 
