@@ -3,9 +3,9 @@ import { Router } from 'express';
 import authenticationRouter from './authentication.rouco';
 import plantaRouter from './planta';
 import maquinaLlenadoraRouter from './maquinaLlenadora';
-import historicos from './historicos';
-import maquinaNoDisponible from './maquinaNoDisponible';
-import admin from './admin';
+import historicosRouter from './historicos';
+import maquinaNoDisponibleRouter from './maquinaNoDisponible';
+import adminRouter from './admin';
 import plcRouter from './plc.rouco';
 
 import { requireAuth, requirePLCAuth } from '../middlewares/auth';
@@ -21,9 +21,9 @@ router.use(authenticationRouter);
 router.use(requireAuth);
 router.use(maquinaLlenadoraRouter);
 router.use(plantaRouter)
-router.use(historicos);
-router.use(maquinaNoDisponible);
-router.use(admin);
+router.use(historicosRouter);
+router.use(maquinaNoDisponibleRouter);
+router.use(adminRouter);
 // router.use(backupsRouter);
 
 export default router;
