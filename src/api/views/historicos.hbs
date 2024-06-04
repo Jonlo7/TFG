@@ -156,8 +156,6 @@
     let response = await fetch('/tiempo-real');
     let data = await response.json();
     let alarmas = new Array(11);
-    let responseLotes = await fetch('/lotes');
-    let lotes = await responseLotes.json();
     alarmas[0] = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
     alarmas[10] = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
     alarmas[3] = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
@@ -174,6 +172,8 @@
         let denom = 'Alarma' + i;
         let setAlarma = 'setAlarma' + i;
         let resetAlarma = 'resetAlarma' + i;
+        let responseLotes = await fetch('/lotes');
+        let lotes = await responseLotes.json();
         if (alarmas[i] === true) {
           console.log('Alarma ' + i + ' ha saltado');
           let alarmaAscendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
@@ -185,7 +185,6 @@
             horaSalto: horaSalto,
             idLote: idLote
           };
-          console.log(body);
           fetch('/flanco-ascendente', {
             method: 'POST',
             headers: {
@@ -196,7 +195,6 @@
               body,
             }),
           });
-
         } else {
           console.log('Alarma ' + i + ' ha sido resuelta');
           let alarmaDescendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
@@ -210,7 +208,6 @@
             idLote: idLote,
             horaResolucion: horaResolucion
           };
-          console.log(body);
           fetch('/flanco-descendente', {
             method: 'POST',
             headers: {

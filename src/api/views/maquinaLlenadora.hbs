@@ -541,61 +541,7 @@
     const responseAlarmas = await fetch('/alarmas');
     alarmasData = await responseAlarmas.json();
   };
-    async function obtenerEstadoLlenadora() {
-        try {
-            const response = await fetch('/tiempo-real');
-            const data = await response.json();
-            document.getElementById('nivel-tanque').value = data.todasTiempoReal.find(c => c.clave === 'nivelTanque').valorParseado;
-            document.getElementById('caudalimetro').value = data.todasTiempoReal.find(c => c.clave === 'caudalimetro').valorParseado;
-            document.getElementById('aspirador').checked = data.todasTiempoReal.find(c => c.clave === 'sAspiradora').valorParseado;
-            document.getElementById('cinta').checked = data.todasTiempoReal.find(c => c.clave === 'sCinta').valorParseado;
-            document.getElementById('motor').checked = data.todasTiempoReal.find(c => c.clave === 'sMotorLlenadora').valorParseado;
-            document.getElementById('valvula').checked = data.todasTiempoReal.find(c => c.clave === 'sValvula').valorParseado;
-            document.getElementById('sensor-nivel-alto').checked = data.todasTiempoReal.find(c => c.clave === 'nivelAlto').valorParseado;
-            document.getElementById('sensor-nivel-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'nivelBajo').valorParseado;
-            document.getElementById('sensor-giro').checked = data.todasTiempoReal.find(c => c.clave === 'giro').valorParseado;
-            document.getElementById('numero-lote').value = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
-            document.getElementById('fechaInicio-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
-            document.getElementById('fechaFin-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
-            document.getElementById('numeroBotellas-lote').value = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
-            document.getElementById('tiempo-lote').value = data.todasTiempoReal.find(c => c.clave === 'tiempoTrabajo').valorParseado;
-            let mMarcha = data.todasTiempoReal.find(c => c.clave === 'mMarcha').valorParseado;
-            if (mMarcha) {
-                document.querySelector('.mMarcha').style.backgroundColor = '#4CAF50';
-            } else {
-                document.querySelector('.mMarcha').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
-            }
-            let mParo = data.todasTiempoReal.find(c => c.clave === 'mParo').valorParseado;
-            if (mParo) {
-                document.querySelector('.mParo').style.backgroundColor = 'rgba(234, 179, 8, var(--tw-bg-opacity))';
-            } else {
-                document.querySelector('.mParo').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
-            }
-            let mEmergencia = data.todasTiempoReal.find(c => c.clave === 'mEmergencia').valorParseado;
-            if (mEmergencia) {
-                document.querySelector('.mEmergencia').style.backgroundColor = 'rgba(239, 68, 68, var(--tw-bg-opacity))';
-            } else {
-                document.querySelector('.mEmergencia').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
-            }
-            document.getElementById('paro-inactividad').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
-            document.getElementById('seta-emergencia').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
-            document.getElementById('llenado-botellas').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
-            document.getElementById('nivel-tanque-alto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
-            document.getElementById('nivel-tanque-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
-            document.getElementById('no-entra-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
-            document.getElementById('sigue-entrando-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
-            document.getElementById('fallo-motor').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
-            document.getElementById('fallo-sensores').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
-            document.getElementById('sensor-nivelAlto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
-            document.getElementById('sensor-nivelBajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
 
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-    setInterval(obtenerEstadoLlenadora, 1000);
 
     async function bWEBMarcha() {
         fetch('/botones', {
@@ -609,7 +555,6 @@
             }),
         });
     }
-    //funciones para los demas botones
     async function bWEBParo() {
         fetch('/botones', {
             method: 'POST',
@@ -745,6 +690,124 @@
 
     let estadoAnterior = new Array(11).fill(false);
 
-
+    async function checkAlarmas() {
+    const response = await fetch('/tiempo-real');
+    const data = await response.json();
+    try {
+            document.getElementById('nivel-tanque').value = data.todasTiempoReal.find(c => c.clave === 'nivelTanque').valorParseado;
+            document.getElementById('caudalimetro').value = data.todasTiempoReal.find(c => c.clave === 'caudalimetro').valorParseado;
+            document.getElementById('aspirador').checked = data.todasTiempoReal.find(c => c.clave === 'sAspiradora').valorParseado;
+            document.getElementById('cinta').checked = data.todasTiempoReal.find(c => c.clave === 'sCinta').valorParseado;
+            document.getElementById('motor').checked = data.todasTiempoReal.find(c => c.clave === 'sMotorLlenadora').valorParseado;
+            document.getElementById('valvula').checked = data.todasTiempoReal.find(c => c.clave === 'sValvula').valorParseado;
+            document.getElementById('sensor-nivel-alto').checked = data.todasTiempoReal.find(c => c.clave === 'nivelAlto').valorParseado;
+            document.getElementById('sensor-nivel-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'nivelBajo').valorParseado;
+            document.getElementById('sensor-giro').checked = data.todasTiempoReal.find(c => c.clave === 'giro').valorParseado;
+            document.getElementById('numero-lote').value = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+            document.getElementById('fechaInicio-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
+            document.getElementById('fechaFin-lote').value = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
+            document.getElementById('numeroBotellas-lote').value = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
+            document.getElementById('tiempo-lote').value = data.todasTiempoReal.find(c => c.clave === 'tiempoTrabajo').valorParseado;
+            let mMarcha = data.todasTiempoReal.find(c => c.clave === 'mMarcha').valorParseado;
+            if (mMarcha) {
+                document.querySelector('.mMarcha').style.backgroundColor = '#4CAF50';
+            } else {
+                document.querySelector('.mMarcha').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
+            }
+            let mParo = data.todasTiempoReal.find(c => c.clave === 'mParo').valorParseado;
+            if (mParo) {
+                document.querySelector('.mParo').style.backgroundColor = 'rgba(234, 179, 8, var(--tw-bg-opacity))';
+            } else {
+                document.querySelector('.mParo').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
+            }
+            let mEmergencia = data.todasTiempoReal.find(c => c.clave === 'mEmergencia').valorParseado;
+            if (mEmergencia) {
+                document.querySelector('.mEmergencia').style.backgroundColor = 'rgba(239, 68, 68, var(--tw-bg-opacity))';
+            } else {
+                document.querySelector('.mEmergencia').style.backgroundColor = 'rgba(209, 213, 219, var(--tw-bg-opacity))';
+            }
+            document.getElementById('paro-inactividad').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
+            document.getElementById('seta-emergencia').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
+            document.getElementById('llenado-botellas').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
+            document.getElementById('nivel-tanque-alto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
+            document.getElementById('nivel-tanque-bajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
+            document.getElementById('no-entra-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
+            document.getElementById('sigue-entrando-caudal').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
+            document.getElementById('fallo-motor').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
+            document.getElementById('fallo-sensores').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
+            document.getElementById('sensor-nivelAlto').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
+            document.getElementById('sensor-nivelBajo').checked = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    let alarmas = new Array(11);
+    alarmas[0] = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
+    alarmas[10] = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
+    alarmas[3] = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
+    alarmas[6] = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
+    alarmas[5] = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
+    alarmas[1] = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
+    alarmas[2] = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
+    alarmas[4] = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
+    alarmas[7] = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
+    alarmas[9] = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
+    alarmas[8] = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
+    for (let i = 0; i < alarmas.length; i++) {
+      if (estadoAnterior[i] !== alarmas[i]) {
+        let denom = 'Alarma' + i;
+        let setAlarma = 'setAlarma' + i;
+        let resetAlarma = 'resetAlarma' + i;
+        let responseLotes = await fetch('/lotes');
+        let lotes = await responseLotes.json();
+        if (alarmas[i] === true) {
+          console.log('Alarma ' + i + ' ha saltado');
+          let alarmaAscendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
+          let horaSalto = data.todasTiempoReal.find(c => c.clave === setAlarma).valorParseado;
+          numLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+          let idLote = lotes.todosLotes.find(c => c.numLote === numLote).id_Lote;
+          let body = {
+            idAlarma: alarmaAscendente,
+            horaSalto: horaSalto,
+            idLote: idLote
+          };
+          fetch('/flanco-ascendente', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+              body,
+            }),
+          });
+        } else {
+          console.log('Alarma ' + i + ' ha sido resuelta');
+          let alarmaDescendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
+          let horaSalto = data.todasTiempoReal.find(c => c.clave === setAlarma).valorParseado;
+          numLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+          let idLote = lotes.todosLotes.find(c => c.numLote === numLote).id_Lote;
+          let horaResolucion = data.todasTiempoReal.find(c => c.clave === resetAlarma).valorParseado;
+          let body = {
+            idAlarma: alarmaDescendente,
+            horaSalto: horaSalto,
+            idLote: idLote,
+            horaResolucion: horaResolucion
+          };
+          fetch('/flanco-descendente', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+              body,
+            }),
+          });
+        }
+      }
+    }
+    estadoAnterior = alarmas;
+  }
+    setInterval(checkAlarmas, 500);
 
 </script>
