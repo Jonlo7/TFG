@@ -128,10 +128,17 @@
 <script>
 
   let alarmasData;
+  let estadoAnterior = new Array(11).fill(false);
+  let estadoAnterioridLote = 0;
+  let estadoAnteriorBotellasLote = 0;
 
   window.onload = async function () {
     const responseAlarmas = await fetch('/alarmas');
     alarmasData = await responseAlarmas.json();
+    const responseLotes = await fetch('/tiempo-real');
+    const data = await responseLotes.json();
+    estadoAnterioridLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+    estadoAnteriorBotellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
   };
 
   ['Lote', 'Alarma'].forEach(function (i) {
@@ -150,9 +157,9 @@
     });
   });
 
-  let estadoAnterior = new Array(11).fill(false);
 
-  async function checkAlarmas() {
+
+  async function check() {
     let response = await fetch('/tiempo-real');
     let data = await response.json();
     let alarmas = new Array(11);
@@ -222,7 +229,52 @@
       }
     }
     estadoAnterior = alarmas;
+
+    let idLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+    if (estadoAnterioridLote !== idLote) {
+      let fechaInicioLote = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
+      let body = {
+        numLote: idLote,
+        horaInicio: fechaInicioLote
+      };
+      console.log(body);
+      fetch('/nuevo-lote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify({
+          body,
+        }),
+      });
+    }
+
+    let botellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
+    if (estadoAnteriorBotellasLote !== botellasLote) {
+      let fechaFinLote = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
+      let fechaInicioLote = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
+      let body = {
+        numLote: idLote,
+        botellasCorrectas: botellasLote,
+        horaInicio: fechaInicioLote,
+        horaFin: fechaFinLote
+      };
+      console.log(body);
+      fetch('/fin-lote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify({
+          body,
+        }),
+      });
+    }
+    estadoAnterioridLote = idLote;
+    estadoAnteriorBotellasLote = botellasLote;
   }
 
-  setInterval(checkAlarmas, 500);
+  setInterval(check, 500);
 </script>

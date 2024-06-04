@@ -1,19 +1,18 @@
 <div class="flex items-center justify-center h-screen w-screen bg-gray-100 dark:bg-gray-900">
-    {{> csrftokeninput }}
-  <div class="border text-card-foreground max-w-md w-full p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg" data-v0-t="card">
+  {{> csrftokeninput }}
+  <div class="border text-card-foreground max-w-md w-full p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg"
+    data-v0-t="card">
     <div class="flex flex-col space-y-1.5 p-6">
       <h3 class="whitespace-nowrap tracking-tight text-2xl font-bold">Servicio no disponible</h3>
     </div>
     <div class="p-6 space-y-4">
       <p class="text-gray-600 dark:text-gray-400">
-        Lamentamos informarle que el servicio que ha solicitado no se encuentra disponible en este momento. 
+        Lamentamos informarle que el servicio que ha solicitado no se encuentra disponible en este momento.
       </p>
     </div>
     <div class="flex items-center p-6">
-      <a
-          class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full"
-        href="/"
-      >
+      <a class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full"
+        href="/">
         Volver a la planta
       </a>
     </div>
@@ -21,14 +20,20 @@
 </div>
 
 <script>
-    let alarmasData;
+  let alarmasData;
+  let estadoAnterioridLote = 0;
+  let estadoAnteriorBotellasLote = 0;
 
   window.onload = async function () {
     const responseAlarmas = await fetch('/alarmas');
     alarmasData = await responseAlarmas.json();
+    const responseLotes = await fetch('/tiempo-real');
+    const data = await responseLotes.json();
+    estadoAnterioridLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+    estadoAnteriorBotellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
   };
 
-   let estadoAnterior = new Array(11).fill(false);
+  let estadoAnterior = new Array(11).fill(false);
   async function checkAlarmas() {
     let response = await fetch('/tiempo-real');
     let data = await response.json();
@@ -99,6 +104,30 @@
       }
     }
     estadoAnterior = alarmas;
+    let botellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
+    if (estadoAnteriorBotellasLote !== botellasLote) {
+      let fechaFinLote = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
+      let fechaInicioLote = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
+      let body = {
+        numLote: idLote,
+        botellasCorrectas: botellasLote,
+        horaInicio: fechaInicioLote,
+        horaFin: fechaFinLote
+      };
+      console.log(body);
+      fetch('/fin-lote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify({
+          body,
+        }),
+      });
+    }
+    estadoAnterioridLote = idLote;
+    estadoAnteriorBotellasLote = botellasLote;
   }
 
   setInterval(checkAlarmas, 500);

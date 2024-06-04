@@ -18,12 +18,7 @@ router.post(
     "/flanco-ascendente",
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            //coger del body los valores de idAlarma, idLote y horaSalto
             const { idAlarma,horaSalto, idLote } = req.body.body;
-            console.log(idAlarma);
-            console.log(horaSalto);
-            console.log(idLote);
-            //crear una nueva fila en la tabla historial alarmas con los valores de idAlarma, idLote y horaSalto
             await HistorialAlarmas.create({
                 id_Alarma: idAlarma,
                 id_Lote: idLote,
@@ -89,8 +84,50 @@ router.get(
     },
 );
 
+router.post(
+    "/nuevo-lote"
+    , async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const {numLote, horaInicio } = req.body.body;
+            await Lote.create({
+                numLote,
+                horaInicio,
+                botellasCorrectas: 0,
+                horaFin: new Date(0),
+            });
+            res.json({
+                message: "Lote creado con éxito"
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+);
 
-//en la fila de la tabla historial alarmas que tenga la id_alarma y la id_lote que vienen en el body, actualizar la horaResolucion con la horaResolucion que viene en el body
+router.post(
+    "/fin-lote"
+    , async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const {numLote, horaInicio, horaFin, botellasCorrectas } = req.body.body;
+            await Lote.update({ horaFin, botellasCorrectas }, {
+                where: {
+                    numLote,
+                    horaInicio
+                }
+            });
+            res.json({
+                message: "Lote finalizado con éxito"
+            });
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }
+);	
+
+
+
 
 
 export default router;
