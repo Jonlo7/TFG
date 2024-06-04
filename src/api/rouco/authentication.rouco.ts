@@ -91,23 +91,4 @@ router.get(
         });
     },
 );
-
-setInterval(async() => {
-    await TurnoTrabajado.update({fechaLogout: new Date()}, {where: {fechaLogout: null, fechaLogin: {
-        [Op.lt]: new Date(new Date().getTime() - 8 * 60 * 60 * 1000)
-    }}});
-}, 10 * 60 * 1000)
-
-//setInterval(async() => {
-    //const valorTiempoReal = (await TiempoReal.findOne({ where: { clave: 'alarma0' } }))?.valorParseado;
-    //const id_Lote = (await Lote.findOne({order: [['createdAt', 'DESC']]}))?.id_Lote;
-    //const id_Alarma = (await Alarmas.findOne({where: {nombre: 'Nivel tanque alto'}}))?.id_Alarma
-    //if (id_Lote && id_Alarma && valorTiempoReal === 1) {
-    //    const historico = await HistorialAlarmas.create({id_Alarma, horaSalto: new Date(), id_Lote, horaResolucion: null});
-    //} else if (id_Lote && id_Alarma && valorTiempoReal === 0) {
-    //    await HistorialAlarmas.update({horaResolucion: new Date()}, {where: {id_Lote, id_Alarma, horaResolucion: null}});
-    //}
-//}, 1000)
-
-
 export default router;
