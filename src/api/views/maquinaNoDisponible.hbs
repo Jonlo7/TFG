@@ -104,6 +104,26 @@
       }
     }
     estadoAnterior = alarmas;
+    let idLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+    if (estadoAnterioridLote !== idLote) {
+      let fechaInicioLote = data.todasTiempoReal.find(c => c.clave === 'fechaInicioLote').valorParseado;
+      let body = {
+        numLote: idLote,
+        horaInicio: fechaInicioLote
+      };
+      console.log(body);
+      fetch('/nuevo-lote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify({
+          body,
+        }),
+      });
+    }
+
     let botellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
     if (estadoAnteriorBotellasLote !== botellasLote) {
       let fechaFinLote = data.todasTiempoReal.find(c => c.clave === 'fechaFinLote').valorParseado;
