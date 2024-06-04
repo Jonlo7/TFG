@@ -34,5 +34,26 @@ router.post(
     }
 );
 
+//ver si el usuario ya existe y si es asi eliminarlo 
+router.post(
+    "/delete-trabajador",
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { id_Trabajador } = req.body;
+            const trabajador = await Trabajador.findOne({
+                where: {
+                    id_Trabajador,
+                },
+            });
+            if (!trabajador) throw new APIError("No existe", true);
+            await trabajador.destroy();
+            res.json({ success: true });
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
+
 
 export default router;

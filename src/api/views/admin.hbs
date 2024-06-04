@@ -130,10 +130,10 @@
               <div class="pt-4 pb-4 flex justify-center">
                 <button
                   class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
-                  type="submit" id="add-buttonAdd">Añadir</button>
+                   onclick="addTrabajador()" id="add-buttonAdd">Añadir</button>
                 <button
                   class="ml-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
-                  type="button" id="cancel-buttonAdd">Cancelar</button>
+                  id="cancel-buttonAdd">Cancelar</button>
               </div>
             </form>
           </div>
@@ -141,12 +141,23 @@
       </div>
       <div id="modalDelete" class="hidden">
         <div class="modal-content">
-          <h2 class="text-lg font-semibold">Eliminar Trabajador</h2>
-          <select id="worker-select">
-            <!-- Aquí irán las opciones de los trabajadores -->
+          <div class="p-4 border-b dark:border-gray-800 flex justify-between items-center">
+            <h2 class="text-lg font-semibold">Eliminar Trabajador</h2>
+          </div>
+          <div class="pt-4 pr-10 pl-10 space-y-4">
+          <select class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  id="worker-select">
+            {{#each trabajadores}}
+            <option value="{{id_Trabajador}}">{{nombre}} {{apellido}}</option>
+            {{/each}}
           </select>
-          <button id="delete-button">Eliminar</button>
-          <button id="cancel-buttonDelete">Cancelar</button>
+          </div>
+            <div class="pt-4 pb-4 flex justify-center">
+            <button class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
+                  onclick="deleteTrabajador()"  id="delete-button" >Eliminar</button>
+            <button class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
+                  id="cancel-buttonDelete">Cancelar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -177,7 +188,7 @@ cancelButtonDelete.onclick = function() {
   modalDelete.classList.add('hidden');
 }
 
-  document.getElementById("addWorker-form").addEventListener("submit", function (event) {
+  async function addTrabajador() {
     event.preventDefault();
     // Recoge los valores de los campos del formulario
     const nombre = document.getElementById("name").value;
@@ -206,6 +217,7 @@ cancelButtonDelete.onclick = function() {
       .then(data => {
         if (data.success) {
           alert("Trabajador añadido con éxito");
+          location.reload();
         } else {
           alert("Hubo un error al añadir el trabajador");
         }
@@ -213,11 +225,30 @@ cancelButtonDelete.onclick = function() {
       .catch(error => {
         console.error("Error:", error);
       });
-  });
+  }
 
-  document.getElementById('delete-button').addEventListener('click', function () {
-    if (confirm('¿Estás seguro de que quieres eliminar este trabajador?')) {
-      // Aquí puedes eliminar el trabajador de la base de datos
+  async function deleteTrabajador() {
+      const id_Trabajador = document.getElementById('worker-select').value;
+      fetch("/delete-trabajador", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify({ id_Trabajador: id_Trabajador })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("Trabajador eliminado con éxito");
+            location.reload();
+          } else {
+            alert("Hubo un error al eliminar el trabajador");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
     }
-  });
+
 </script>
