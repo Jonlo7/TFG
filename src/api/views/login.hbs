@@ -1,41 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="/styles/tailwind.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/tailwind.css">
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="flex justify-center items-center w-full h-screen">
-    <div class="rounded-lg border bg-white text-black shadow-sm w-full max-w-lg p-8 space-y-6"> 
-        <div class="flex flex-col space-y-3">
-            <h3 class="whitespace-nowrap tracking-tight text-3xl font-bold">Sign in</h3> 
-            <p class="text-sm text-gray-500">Enter your credentials to sign in to your account.</p>
-        </div>
-        <div>
-            <form class="space-y-6" action="/login" method="POST"> 
-                {{> csrftokeninput }}
-                <div class="space-y-3"> 
-                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">
-                        Email
-                    </label>
-                    <input required autofocus class="dark:text-black flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        type="email" id="email" name="email" placeholder="Enter your email" />
-                </div>
-                <div class="space-y-3"> 
-                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="password">
-                        Password
-                    </label>
-                    <input class="dark:text-black flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        id="password" name="password" placeholder="Enter your password" type="password" />
-                </div>
-                <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-3 text-center w-full" type="submit">
-                    Log in
-                </button>
-            </form>
+    <div class="flex justify-center items-center w-full h-screen">
+        <div class="rounded-lg border bg-white text-black shadow-sm w-full max-w-lg p-8 space-y-6">
+            <div class="flex flex-col space-y-3">
+                <h3 class="whitespace-nowrap tracking-tight text-3xl font-bold">Sign in</h3>
+                <p class="text-sm text-gray-500">Enter your credentials to sign in to your account.</p>
+            </div>
+            <div>
+                <form class="space-y-6" action="/login" method="POST">
+                    {{> csrftokeninput }}
+                    <div class="space-y-3">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="email">
+                            Email
+                        </label>
+                        <input required autofocus
+                            class="dark:text-black flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            type="email" id="email" name="email" placeholder="Enter your email" />
+                    </div>
+                    <div class="space-y-3">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="password">
+                            Password
+                        </label>
+                        <input
+                            class="dark:text-black flex h-12 w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            id="password" name="password" placeholder="Enter your password" type="password" />
+                    </div>
+                    <button
+                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-3 text-center w-full"
+                        type="submit">
+                        Log in
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-  </div>
 </body>
+
 </html>
+
+<script>
+    let estadoAnterior = new Array(11).fill(false);
+
+    async function checkAlarmas() {
+        let response = await fetch('/tiempo-real');
+        let data = await response.json();
+        let alarmas = new Array(11);
+        let responseLotes = await fetch('/lotes');
+        let lotes = await responseLotes.json();
+        alarmas[0] = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
+        alarmas[10] = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
+        alarmas[3] = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
+        alarmas[6] = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
+        alarmas[5] = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
+        alarmas[1] = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
+        alarmas[2] = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
+        alarmas[4] = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
+        alarmas[7] = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
+        alarmas[9] = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
+        alarmas[8] = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
+        for (let i = 0; i < alarmas.length; i++) {
+            if (estadoAnterior[i] !== alarmas[i]) {
+                let denom = 'Alarma' + i;
+                let setAlarma = 'setAlarma' + i;
+                let resetAlarma = 'resetAlarma' + i;
+                if (alarmas[i] === true) {
+                    console.log('Alarma ' + i + ' ha saltado');
+                    let alarmaAscendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
+                    let horaSalto = data.todasTiempoReal.find(c => c.clave === setAlarma).valorParseado;
+                    numLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+                    let idLote = lotes.todosLotes.find(c => c.numLote === numLote).id_Lote;
+                    let body = {
+                        idAlarma: alarmaAscendente,
+                        horaSalto: horaSalto,
+                        idLote: idLote
+                    };
+                    console.log(body);
+                    fetch('/flanco-ascendente', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+                        },
+                        body: JSON.stringify({
+                            body,
+                        }),
+                    });
+
+                } else {
+                    console.log('Alarma ' + i + ' ha sido resuelta');
+                    let alarmaDescendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
+                    let horaSalto = data.todasTiempoReal.find(c => c.clave === setAlarma).valorParseado;
+                    numLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+                    let idLote = lotes.todosLotes.find(c => c.numLote === numLote).id_Lote;
+                    let horaResolucion = data.todasTiempoReal.find(c => c.clave === resetAlarma).valorParseado;
+                    let body = {
+                        idAlarma: alarmaDescendente,
+                        horaSalto: horaSalto,
+                        idLote: idLote,
+                        horaResolucion: horaResolucion
+                    };
+                    console.log(body);
+                    fetch('/flanco-descendente', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+                        },
+                        body: JSON.stringify({
+                            body,
+                        }),
+                    });
+                }
+            }
+        }
+        estadoAnterior = alarmas;
+    }
+
+    setInterval(checkAlarmas, 500);
+</script>

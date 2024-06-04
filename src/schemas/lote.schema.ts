@@ -35,4 +35,7 @@ export class Lote extends Model<
     @Attribute(DataTypes.TIME)
     @NotNull
     declare tiempoTrabajo: Date;
+
+    @Attribute(DataTypes.INTEGER)
+    declare numLote: number;
 }

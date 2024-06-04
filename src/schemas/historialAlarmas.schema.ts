@@ -24,7 +24,7 @@ export class HistorialAlarmas extends Model<
     declare id_Historico: CreationOptional<string>;
 
     @Attribute(DataTypes.DATE)
-    @NotNull
+    @AllowNull
     declare horaSalto: Date;
 
     @Attribute(DataTypes.DATE)

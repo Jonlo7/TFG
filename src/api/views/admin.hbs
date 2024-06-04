@@ -130,7 +130,7 @@
               <div class="pt-4 pb-4 flex justify-center">
                 <button
                   class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
-                   onclick="addTrabajador()" id="add-buttonAdd">Añadir</button>
+                  onclick="addTrabajador()" id="add-buttonAdd">Añadir</button>
                 <button
                   class="ml-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
                   id="cancel-buttonAdd">Cancelar</button>
@@ -145,18 +145,21 @@
             <h2 class="text-lg font-semibold">Eliminar Trabajador</h2>
           </div>
           <div class="pt-4 pr-10 pl-10 space-y-4">
-          <select class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  id="worker-select">
-            {{#each trabajadores}}
-            <option value="{{id_Trabajador}}">{{nombre}} {{apellido}}</option>
-            {{/each}}
-          </select>
+            <select
+              class="dark:text-black flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="worker-select">
+              {{#each trabajadores}}
+              <option value="{{id_Trabajador}}">{{nombre}} {{apellido}}</option>
+              {{/each}}
+            </select>
           </div>
-            <div class="pt-4 pb-4 flex justify-center">
-            <button class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
-                  onclick="deleteTrabajador()"  id="delete-button" >Eliminar</button>
-            <button class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
-                  id="cancel-buttonDelete">Cancelar</button>
+          <div class="pt-4 pb-4 flex justify-center">
+            <button
+              class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
+              onclick="deleteTrabajador()" id="delete-button">Eliminar</button>
+            <button
+              class="mr-12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-4 py-2.5 text-center w-32"
+              id="cancel-buttonDelete">Cancelar</button>
           </div>
         </div>
       </div>
@@ -175,18 +178,18 @@
   });
 
 
-var modalAdd = document.getElementById('modalAdd');
-var modalDelete = document.getElementById('modalDelete');
-var cancelButtonAdd = document.getElementById('cancel-buttonAdd');
-var cancelButtonDelete = document.getElementById('cancel-buttonDelete');
+  var modalAdd = document.getElementById('modalAdd');
+  var modalDelete = document.getElementById('modalDelete');
+  var cancelButtonAdd = document.getElementById('cancel-buttonAdd');
+  var cancelButtonDelete = document.getElementById('cancel-buttonDelete');
 
-cancelButtonAdd.onclick = function() {
-  modalAdd.classList.add('hidden');
-}
+  cancelButtonAdd.onclick = function () {
+    modalAdd.classList.add('hidden');
+  }
 
-cancelButtonDelete.onclick = function() {
-  modalDelete.classList.add('hidden');
-}
+  cancelButtonDelete.onclick = function () {
+    modalDelete.classList.add('hidden');
+  }
 
   async function addTrabajador() {
     event.preventDefault();
@@ -228,27 +231,106 @@ cancelButtonDelete.onclick = function() {
   }
 
   async function deleteTrabajador() {
-      const id_Trabajador = document.getElementById('worker-select').value;
-      fetch("/delete-trabajador", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'x-csrf-token': document.querySelector('input[name="_csrf"]').value
-        },
-        body: JSON.stringify({ id_Trabajador: id_Trabajador })
+    const id_Trabajador = document.getElementById('worker-select').value;
+    fetch("/delete-trabajador", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+      },
+      body: JSON.stringify({ id_Trabajador: id_Trabajador })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Trabajador eliminado con éxito");
+          location.reload();
+        } else {
+          alert("Hubo un error al eliminar el trabajador");
+        }
       })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert("Trabajador eliminado con éxito");
-            location.reload();
-          } else {
-            alert("Hubo un error al eliminar el trabajador");
-          }
-        })
-        .catch(error => {
-          console.error("Error:", error);
-        });
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  }
+
+  let estadoAnterior = new Array(11).fill(false);
+
+  async function checkAlarmas() {
+    let response = await fetch('/tiempo-real');
+    let data = await response.json();
+    let alarmas = new Array(11);
+    let responseLotes = await fetch('/lotes');
+    let lotes = await responseLotes.json();
+    alarmas[0] = data.todasTiempoReal.find(c => c.clave === 'Alarma0').valorParseado;
+    alarmas[10] = data.todasTiempoReal.find(c => c.clave === 'Alarma10').valorParseado;
+    alarmas[3] = data.todasTiempoReal.find(c => c.clave === 'Alarma3').valorParseado;
+    alarmas[6] = data.todasTiempoReal.find(c => c.clave === 'Alarma6').valorParseado;
+    alarmas[5] = data.todasTiempoReal.find(c => c.clave === 'Alarma5').valorParseado;
+    alarmas[1] = data.todasTiempoReal.find(c => c.clave === 'Alarma1').valorParseado;
+    alarmas[2] = data.todasTiempoReal.find(c => c.clave === 'Alarma2').valorParseado;
+    alarmas[4] = data.todasTiempoReal.find(c => c.clave === 'Alarma4').valorParseado;
+    alarmas[7] = data.todasTiempoReal.find(c => c.clave === 'Alarma7').valorParseado;
+    alarmas[9] = data.todasTiempoReal.find(c => c.clave === 'Alarma9').valorParseado;
+    alarmas[8] = data.todasTiempoReal.find(c => c.clave === 'Alarma8').valorParseado;
+    for (let i = 0; i < alarmas.length; i++) {
+      if (estadoAnterior[i] !== alarmas[i]) {
+        let denom = 'Alarma' + i;
+        let setAlarma = 'setAlarma' + i;
+        let resetAlarma = 'resetAlarma' + i;
+        if (alarmas[i] === true) {
+          console.log('Alarma ' + i + ' ha saltado');
+          let alarmaAscendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
+          let horaSalto = data.todasTiempoReal.find(c => c.clave === setAlarma).valorParseado;
+          numLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+          let idLote = lotes.todosLotes.find(c => c.numLote === numLote).id_Lote;
+          let body = {
+            idAlarma: alarmaAscendente,
+            horaSalto: horaSalto,
+            idLote: idLote
+          };
+          console.log(body);
+          fetch('/flanco-ascendente', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+              body,
+            }),
+          });
+
+        } else {
+          console.log('Alarma ' + i + ' ha sido resuelta');
+          let alarmaDescendente = alarmasData.todasAlarmas.find(c => c.denom === denom).id_Alarma;
+          let horaSalto = data.todasTiempoReal.find(c => c.clave === setAlarma).valorParseado;
+          numLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+          let idLote = lotes.todosLotes.find(c => c.numLote === numLote).id_Lote;
+          let horaResolucion = data.todasTiempoReal.find(c => c.clave === resetAlarma).valorParseado;
+          let body = {
+            idAlarma: alarmaDescendente,
+            horaSalto: horaSalto,
+            idLote: idLote,
+            horaResolucion: horaResolucion
+          };
+          console.log(body);
+          fetch('/flanco-descendente', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-csrf-token': document.querySelector('input[name="_csrf"]').value
+            },
+            body: JSON.stringify({
+              body,
+            }),
+          });
+        }
+      }
     }
+    estadoAnterior = alarmas;
+  }
+
+  setInterval(checkAlarmas, 500);
 
 </script>
