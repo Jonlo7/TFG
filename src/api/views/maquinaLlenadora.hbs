@@ -543,9 +543,9 @@
         const responseAlarmas = await fetch('/alarmas');
         alarmasData = await responseAlarmas.json();
         const responseLotes = await fetch('/tiempo-real');
-        const data = await responseLotes.json();
-        estadoAnterioridLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
-        estadoAnteriorBotellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
+        const primeraData = await responseLotes.json();
+        estadoAnterioridLote = primeraData.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+        estadoAnteriorBotellasLote = primeraData.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
     };
 
 
@@ -558,6 +558,7 @@
             },
             body: JSON.stringify({
                 bWEBMarcha: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -570,6 +571,7 @@
             },
             body: JSON.stringify({
                 bWEBParo: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -582,6 +584,7 @@
             },
             body: JSON.stringify({
                 bWEBEmergencia: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -594,8 +597,9 @@
             },
             body: JSON.stringify({
                 bWEBModoAuto: document.getElementById('mode-switch').checked,
-            }),
+            }), 
         });
+        
     }
     async function bWEBAspiradora() {
         fetch('/botones', {
@@ -606,6 +610,7 @@
             },
             body: JSON.stringify({
                 bWEBAspiradora: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -618,6 +623,7 @@
             },
             body: JSON.stringify({
                 bWEBCinta: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -630,6 +636,7 @@
             },
             body: JSON.stringify({
                 bWEBMotorLlenadora: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -642,6 +649,7 @@
             },
             body: JSON.stringify({
                 bWEBValvula: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -654,6 +662,7 @@
             },
             body: JSON.stringify({
                 bWEBCrearLote: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -666,6 +675,7 @@
             },
             body: JSON.stringify({
                 bWEBTerminarLote: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -678,6 +688,7 @@
             },
             body: JSON.stringify({
                 bWEBResetCounterEntrada: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
@@ -690,19 +701,16 @@
             },
             body: JSON.stringify({
                 bWEBResetCounterSalida: true,
+                bWEBModoAuto: document.getElementById('mode-switch').checked,
             }),
         });
     }
 
     let estadoAnterior = new Array(11).fill(false);
 
-    async function checkAlarmas() {
+    async function check() {
         const response = await fetch('/tiempo-real');
         const data = await response.json();
-        const responseLotes = await fetch('/tiempo-real');
-        const data = await responseLotes.json();
-        estadoAnterioridLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
-        estadoAnteriorBotellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
         try {
             document.getElementById('nivel-tanque').value = data.todasTiempoReal.find(c => c.clave === 'nivelTanque').valorParseado;
             document.getElementById('caudalimetro').value = data.todasTiempoReal.find(c => c.clave === 'caudalimetro').valorParseado;
@@ -824,7 +832,6 @@
                 numLote: idLote,
                 horaInicio: fechaInicioLote
             };
-            console.log(body);
             fetch('/nuevo-lote', {
                 method: 'POST',
                 headers: {
@@ -861,6 +868,6 @@
         estadoAnterioridLote = idLote;
         estadoAnteriorBotellasLote = botellasLote;
     }
-    setInterval(checkAlarmas, 500);
+    setInterval(check, 500);
 
 </script>

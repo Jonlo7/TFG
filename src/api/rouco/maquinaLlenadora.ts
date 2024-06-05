@@ -100,14 +100,18 @@ router.post(
                     });
                 }, 500);
             }
-
-            if (bWEBModoAuto) {
+            if(bWEBModoAuto) {
                 await Botones.upsert({
                     id_Boton: 'bWEBModoAuto',
                     valor: bWEBModoAuto
                 });
             }
-
+            if (!bWEBModoAuto) {
+                await Botones.upsert({
+                    id_Boton: 'bWEBModoAuto',
+                    valor: bWEBModoAuto
+                });
+            }
             if (bWEBMotorLlenadora) {
                 await Botones.upsert({
                     id_Boton: 'bWEBMotorLlenadora',
