@@ -175,9 +175,9 @@
     const responseAlarmas = await fetch('/alarmas');
     alarmasData = await responseAlarmas.json();
     const responseLotes = await fetch('/tiempo-real');
-    const data = await responseLotes.json();
-    estadoAnterioridLote = data.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
-    estadoAnteriorBotellasLote = data.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
+    const primeraData = await responseLotes.json();
+    estadoAnterioridLote = primeraData.todasTiempoReal.find(c => c.clave === 'idLote').valorParseado;
+    estadoAnteriorBotellasLote = primeraData.todasTiempoReal.find(c => c.clave === 'botellasLote').valorParseado;
   };
 
   document.getElementById("addTrabajador").addEventListener("click", function () {
