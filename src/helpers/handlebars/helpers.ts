@@ -66,7 +66,7 @@ HBS.registerHelper("date", (date: Date) => {
   const offsetHours = Math.floor(offset / 60).toString().padStart(2, '0')
   const offsetMinutes = Math.floor(offset % 60).toString().padStart(2, '0')
 
-  return `${day}-${month}-${year} ${hours}:${minutes}:${seconds} UTC${offsetOperator}${offsetHours}:${offsetMinutes}`;
+  return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`; //UTC${offsetOperator}${offsetHours}:${offsetMinutes}
 });
 
 // uppercase
