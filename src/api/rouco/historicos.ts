@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { TiempoReal,HistorialAlarmas,Lote,Alarmas } from '../../schemas';
+import { HistorialAlarmas,Lote,Alarmas } from '../../schemas';
 
 const router = Router();
 
@@ -13,20 +13,36 @@ router.get(
         res.render("historicos", { layout: "index", isAdmin: isAdmin, historialAlarmas, historialLotes});
     },
 );
-//crear una nueva fila en la tabla historial alarmas y meter la id_alarma, el id_lote y la horaSalto que vienen en el body
 router.post(
     "/flanco-ascendente",
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { idAlarma,horaSalto, idLote } = req.body.body;
-            await HistorialAlarmas.create({
-                id_Alarma: idAlarma,
-                id_Lote: idLote,
-                horaSalto
+            const { idAlarma, horaSalto, idLote } = req.body.body;
+            const existingAlarm = await HistorialAlarmas.findOne({
+                where: {
+                    id_Alarma: idAlarma,
+                    id_Lote: idLote,
+                    horaSalto
+                }
             });
-            res.json({
-                message: "Alarma registrada con éxito"
+
+            if (existingAlarm) {
+                res.json({
+                    message: "La alarma ya está creada"
+                });
+                return;
+            }
+            else{
+                await HistorialAlarmas.create({
+                    id_Alarma: idAlarma,
+                    id_Lote: idLote,
+                    horaSalto
+                });
+
+                res.json({
+                    message: "Alarma registrada con éxito"
             });
+        }
         } catch (error) {
             console.error(error);
             next(error);
